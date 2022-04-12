@@ -1,0 +1,141 @@
+/* #6E5C62 */
+/* #4C4347 */
+/* #615458 */
+/* #3aa394 */
+/* #D3AD69 */
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@600;700&display=swap");
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+}
+
+html {
+    user-select: none;
+}
+
+body {
+    font-family: "Signika Negative", sans-serif;
+    font-size: 10px;
+    background-color: #6e5c62;
+    height: 100vh;
+}
+
+.main-header {
+    font-size: 3.4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #f3f4f6;
+    text-align: center;
+    padding: 1.4rem 0 18rem 0;
+}
+
+.main-header span {
+    color: #3aa394;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading-secondary {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #f3f4f6;
+    text-align: center;
+    margin-bottom: 2.6rem;
+}
+
+.letters {
+    display: flex;
+    gap: 0.4rem;
+}
+
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
+
+.letter-input {
+    height: 6rem;
+    width: 6rem;
+    background-color: #6e5c62;
+    border: 0.46rem solid #4c4347;
+    border-radius: 0.8rem;
+    color: #fff;
+    font-size: 3.2rem;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.yellow-text {
+    color: #d3ad69;
+}
+
+.black-text {
+    color: #1f2937;
+}
+
+.green-text {
+    color: #3aa394;
+}
+
+.black,
+.yellow,
+.green {
+    position: relative;
+}
+
+.arrow {
+    height: 3.4rem;
+    color: #f3f4f6;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.3rem;
+    transition: all 300ms ease;
+}
+
+.arrow:hover {
+    background-color: #d3ad69;
+    height: 3.6rem;
+}
+
+.left {
+    left: -10rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right {
+    right: -10rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.edit {
+    border-bottom: 0.9rem solid #4c4347;
+}
+
+.hide {
+    display: none;
+}
