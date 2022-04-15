@@ -241,8 +241,9 @@ footer {
     color: #1f2937;
     font-size: 0.8rem;
     font-weight: 500;
-    margin-top: 4rem;
-    margin-left: 0.4rem;
+    position: absolute;
+    bottom: 0.4rem;
+    left: 0.4rem;
 }
 
 .footer-icon {
