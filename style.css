@@ -59,8 +59,10 @@ main {
 }
 
 .letters {
-    display: flex;
-    gap: 0.4rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 0.4rem;
+    column-gap: 0.4rem;
 }
 
 .letter-input {
@@ -69,7 +71,7 @@ main {
     background-color: #6e5c62;
     border: 0.46rem solid #4c4347;
     border-radius: 0.8rem;
-    color: #fff;
+    color: #f3f4f6;
     font-size: 3.2rem;
     padding: 1rem;
     text-align: center;
@@ -94,6 +96,21 @@ main {
 .yellow,
 .green {
     position: relative;
+}
+
+.filled-input.black-input {
+    background-color: #1f2937;
+    border: 0.46rem solid #1f2937;
+}
+
+.filled-input.yellow-input {
+    background-color: #d3ad69;
+    border: 0.46rem solid #d3ad69;
+}
+
+.filled-input.green-input {
+    background-color: #3aa394;
+    border: 0.46rem solid #3aa394;
 }
 
 .black .letters {
@@ -151,16 +168,15 @@ main {
     display: none;
 }
 
-.confirm-btn {
-    border: 0.42rem solid #4c4347;
+.enter-btn {
+    border: 0.4rem solid #4c4347;
     padding: 0.8rem 3rem;
     background-color: #4c4347;
     color: #f3f4f6;
     text-transform: uppercase;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     border-radius: 0.8rem;
-    /* margin: 3rem auto 0 auto; */
     display: block;
     cursor: pointer;
     font-family: inherit;
@@ -171,7 +187,12 @@ main {
     transform: translateX(-50%);
 }
 
-.confirm-btn:hover {
-    border: 0.42rem solid #4c4347;
+.enter-btn:hover {
+    border: 0.4rem solid #4c4347;
     background-color: #6e5c62;
+}
+
+.enter-btn:active {
+    border: 0.4rem solid #615458;
+    background-color: #615458;
 }
