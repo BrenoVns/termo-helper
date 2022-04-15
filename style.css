@@ -26,10 +26,11 @@ body {
 }
 
 .main-header {
-    padding: 1.4rem 0 18rem 0;
+    padding: 1.7rem 0 18rem 0;
 }
 
 .heading-primary {
+    position: relative;
     font-size: 3.5rem;
     text-transform: uppercase;
     font-weight: 700;
@@ -40,7 +41,36 @@ body {
 }
 
 .main-header span {
+    display: inline-block;
+    transition: all 300ms ease;
+}
+
+.main-header span:hover {
+    transform: translateY(-6%);
+}
+
+.green-word {
     color: #3aa394;
+}
+
+.help-btn {
+    font-size: 1.4rem;
+    color: #c2c3c5;
+    border: 2px solid #c2c3c5;
+    border-radius: 8px;
+    padding: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 34%;
+    transform: translateY(-50%);
+    transition: all 300ms ease;
+}
+
+.help-btn:hover {
+    color: #f3f4f6;
+    border: 2px solid #f3f4f6;
+    transform: translateY(-56%);
 }
 
 main {
@@ -78,6 +108,10 @@ main {
     text-transform: uppercase;
     font-weight: 700;
     cursor: pointer;
+}
+
+.blocked {
+    background-color: #4c4347 !important;
 }
 
 .yellow-text {
@@ -118,29 +152,31 @@ main {
 }
 
 .arrow {
-    height: 3.2rem;
+    font-size: 2.8rem;
     color: #f3f4f6;
     position: absolute;
     cursor: pointer;
     border-radius: 1.2rem;
     padding: 0.2rem;
-    transition: all 240ms ease;
-}
-
-.arrow:hover {
-    height: 3.6rem;
+    transition: all 280ms;
 }
 
 .left {
-    left: -10rem;
+    left: -10.4rem;
     top: 50%;
-    transform: translateY(-50%);
+}
+
+.left:hover {
+    transform: translateX(-6px);
 }
 
 .right {
-    right: -10rem;
+    right: -10.4rem;
     top: 50%;
-    transform: translateY(-50%);
+}
+
+.right:hover {
+    transform: translateX(6px);
 }
 
 .black .right {

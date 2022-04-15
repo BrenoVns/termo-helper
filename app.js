@@ -1,9 +1,18 @@
 // Styling
+const blackSectionEl = document.querySelector(".black");
+const yellowSectionEl = document.querySelector(".yellow");
+const greenSectionEl = document.querySelector(".green");
+const rArrowsEl = document.querySelectorAll(".right");
+const lArrowsEl = document.querySelectorAll(".left");
+const letterInputsEl = document.querySelectorAll(".letter-input");
+const blackInputsEl = document.querySelectorAll(".black-input");
+const yellowInputsEl = document.querySelectorAll(".yellow-input");
+const greenInputsEl = document.querySelectorAll(".green-input");
 
-const letterInputs = document.querySelectorAll(".letter-input");
 let prevInput;
-letterInputs.forEach((input) => {
-    input.addEventListener("click", () => {
+
+letterInputsEl.forEach((input) => {
+    input.addEventListener("focus", () => {
         if (input.classList.contains("edit")) {
             return;
         }
@@ -17,42 +26,193 @@ letterInputs.forEach((input) => {
     });
 });
 
-const blackSection = document.querySelector(".black");
-const yellowSection = document.querySelector(".yellow");
-const greenSection = document.querySelector(".green");
-const rArrows = document.querySelectorAll(".right");
-const lArrows = document.querySelectorAll(".left");
+blackInputsEl.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        if (e.inputType === "deleteContentBackward") {
+            input.classList.remove("filled-input");
+            if (!input.previousElementSibling) {
+                return;
+            }
+            input.previousElementSibling.focus();
+            return;
+        }
+        if (
+            !input.classList.contains("filled-input") &&
+            /^[A-Za-z\s]*$/.test(e.value) === true
+        ) {
+            input.classList.add("filled-input");
+            input.readOnly = true;
+            if (!input.nextElementSibling) {
+                input.blur();
+                return;
+            }
+            input.nextElementSibling.classList.remove("blocked");
+            input.nextElementSibling.focus();
+            input.nextElementSibling.readOnly = false;
+        }
+    });
+
+    input.addEventListener("click", () => {
+        if (input.classList.contains("filled-input")) {
+            input.readOnly = false;
+        }
+    });
+});
+
+yellowInputsEl.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        if (e.inputType === "deleteContentBackward") {
+            input.classList.remove("filled-input");
+            input.classList.add("blocked");
+            input.readOnly = true;
+
+            if (!input.previousElementSibling) {
+                input.blur();
+                return;
+            }
+
+            input.previousElementSibling.focus();
+            return;
+        }
+        if (
+            !input.classList.contains("filled-input") &&
+            /^[A-Za-z\s]*$/.test(e.value) === true
+        ) {
+            input.classList.add("filled-input");
+            input.readOnly = true;
+            if (!input.nextElementSibling) {
+                input.blur();
+                return;
+            }
+            input.nextElementSibling.classList.remove("blocked");
+            input.nextElementSibling.focus();
+            input.nextElementSibling.readOnly = false;
+        }
+    });
+
+    input.addEventListener("click", () => {
+        if (input.readOnly === true) {
+            for (const inp of yellowInputsEl) {
+                if (
+                    inp.readOnly === false &&
+                    !inp.classList.contains("filled-input")
+                ) {
+                    inp.classList.add("blocked");
+                    inp.readOnly = true;
+                    break;
+                }
+            }
+            input.classList.remove("blocked");
+            input.readOnly = false;
+        }
+
+        if (input.classList.contains("filled-input")) {
+            for (const inp of yellowInputsEl) {
+                if (
+                    inp.readOnly === false &&
+                    !inp.classList.contains("filled-input")
+                ) {
+                    inp.classList.add("blocked");
+                    inp.readOnly = true;
+                    break;
+                }
+            }
+        }
+    });
+});
+
+greenInputsEl.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        if (e.inputType === "deleteContentBackward") {
+            input.classList.remove("filled-input");
+            input.classList.add("blocked");
+            input.readOnly = true;
+
+            if (!input.previousElementSibling) {
+                return;
+            }
+
+            input.previousElementSibling.focus();
+            return;
+        }
+        if (
+            !input.classList.contains("filled-input") &&
+            /^[A-Za-z\s]*$/.test(e.value) === true
+        ) {
+            input.classList.add("filled-input");
+            input.readOnly = true;
+
+            if (!input.nextElementSibling) {
+                input.blur();
+                return;
+            }
+            input.nextElementSibling.classList.remove("blocked");
+            input.nextElementSibling.focus();
+            input.nextElementSibling.readOnly = false;
+        }
+    });
+
+    input.addEventListener("click", () => {
+        if (input.readOnly === true) {
+            for (const inp of greenInputsEl) {
+                if (
+                    inp.readOnly === false &&
+                    !inp.classList.contains("filled-input")
+                ) {
+                    inp.classList.add("blocked");
+                    inp.readOnly = true;
+                    break;
+                }
+            }
+            input.classList.remove("blocked");
+            input.readOnly = false;
+        }
+
+        if (input.classList.contains("filled-input")) {
+            for (const inp of greenInputsEl) {
+                if (
+                    inp.readOnly === false &&
+                    !inp.classList.contains("filled-input")
+                ) {
+                    inp.classList.add("blocked");
+                    inp.readOnly = true;
+                    break;
+                }
+            }
+        }
+    });
+});
 
 let actualSection = 0;
 
-rArrows.forEach((arrow) => {
+rArrowsEl.forEach((arrow) => {
     arrow.addEventListener("click", () => {
         if (actualSection === 0) {
-            blackSection.classList.toggle("hide");
-            yellowSection.classList.toggle("hide");
+            blackSectionEl.classList.toggle("hide");
+            yellowSectionEl.classList.toggle("hide");
             actualSection = 1;
             return;
         }
         if (actualSection === 1) {
-            yellowSection.classList.toggle("hide");
-            greenSection.classList.toggle("hide");
+            yellowSectionEl.classList.toggle("hide");
+            greenSectionEl.classList.toggle("hide");
             actualSection = 2;
             return;
         }
     });
 });
 
-lArrows.forEach((arrow) => {
+lArrowsEl.forEach((arrow) => {
     arrow.addEventListener("click", () => {
         if (actualSection === 1) {
-            yellowSection.classList.toggle("hide");
-            blackSection.classList.toggle("hide");
+            yellowSectionEl.classList.toggle("hide");
+            blackSectionEl.classList.toggle("hide");
             actualSection = 0;
             return;
         }
         if (actualSection === 2) {
-            greenSection.classList.toggle("hide");
-            yellowSection.classList.toggle("hide");
+            greenSectionEl.classList.toggle("hide");
+            yellowSectionEl.classList.toggle("hide");
             actualSection = 1;
             return;
         }
@@ -125,6 +285,21 @@ let possibleLetters;
 let createdWords = [];
 let possibleWords;
 let matchingWords = [];
+
+function reset() {
+    actualInputNum = 0;
+    firstLetter = [];
+    secondLetter = [];
+    thirdLetter = [];
+    fourthLetter = [];
+    fifthLetter = [];
+    blackLetters = [];
+    yellowLetters = [];
+    possibleLetters = [];
+    createdWords = [];
+    possibleWords = [];
+    matchingWords = [];
+}
 
 function getBlackInputValues() {
     blackInputs.forEach((input) => {
@@ -672,10 +847,37 @@ function getResult() {
                 });
             });
             console.log(matchingWords);
+            reset();
         });
 }
 
 async function runLogic() {
+    let isValid = false;
+    blackInputs.forEach((input) => {
+        if (input.value) {
+            isValid = true;
+            return;
+        }
+    });
+
+    yellowInputs.forEach((input) => {
+        if (input.value) {
+            isValid = true;
+            return;
+        }
+    });
+
+    greenInputs.forEach((input) => {
+        if (input.value) {
+            isValid = true;
+            return;
+        }
+    });
+
+    if (!isValid) {
+        return;
+    }
+
     getBlackInputValues();
     getGreenInputValues();
     getYellowInputValues();
