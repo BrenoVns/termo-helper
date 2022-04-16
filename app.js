@@ -224,6 +224,8 @@ const enterBtn = document.querySelector(".enter-btn");
 const blackInputs = document.querySelectorAll(".black-input");
 const greenInputs = document.querySelectorAll(".green-input");
 const yellowInputs = document.querySelectorAll(".yellow-input");
+const possibleWordsBoxEl = document.querySelector(".possible-words-box");
+const closeBtn = document.querySelector(".close-btn");
 
 const alphabet = [
     "a",
@@ -299,6 +301,21 @@ function reset() {
     createdWords = [];
     possibleWords = [];
     matchingWords = [];
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => {
+        input.value = null;
+        input.classList.remove("filled-input");
+    });
+    yellowInputs.forEach((input) => {
+        input.classList.add("blocked");
+        input.readOnly = true;
+    });
+    greenInputs.forEach((input) => {
+        input.classList.add("blocked");
+        input.readOnly = true;
+    });
+    blackSectionEl.classList.toggle("hide");
+    greenSectionEl.classList.toggle("hide");
 }
 
 function getBlackInputValues() {
@@ -451,7 +468,11 @@ function getYellowInputValues() {
                                 fourthLetter[d] +
                                 fifthLetter[e];
 
-                            createdWords.push(combinedWord);
+                            createdWords.push(
+                                combinedWord
+                                    .normalize("NFD")
+                                    .replace(/[\u0300-\u036f]/g, "")
+                            );
                         }
                     }
                 }
@@ -846,6 +867,18 @@ function getResult() {
                     }
                 });
             });
+            if (matchingWords.length > 16) {
+                return;
+            }
+            matchingWords.forEach((word) => {
+                const wordEl = document.createElement("span");
+                wordEl.innerText = word;
+                possibleWordsBoxEl.appendChild(wordEl);
+            });
+            document.querySelector(
+                ".result-modal .heading-secondary"
+            ).innerText = `${matchingWords.length.toString()} possible words`;
+            document.querySelector(".result-modal").showModal();
             console.log(matchingWords);
             reset();
         });
@@ -886,4 +919,8 @@ async function runLogic() {
 
 enterBtn.addEventListener("click", () => {
     runLogic();
+});
+
+closeBtn.addEventListener("click", () => {
+    document.querySelector(".result-modal").close();
 });

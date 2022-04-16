@@ -237,6 +237,72 @@ main {
     background-color: #615458;
 }
 
+.result-modal {
+    user-select: none;
+    position: relative;
+    height: 30rem;
+    width: 42rem;
+    background-color: #312b2d;
+    border: none;
+    border-radius: 12px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.result-modal::backdrop {
+    background-color: rgba(46, 46, 46, 0.4);
+}
+
+.result-modal .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-modal .heading-secondary {
+    margin: 2.8rem 0 4.8rem 0;
+    word-spacing: 0.4rem;
+}
+
+.possible-words-box {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    width: 38rem;
+    flex-wrap: wrap;
+}
+
+.possible-words-box span {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #f3f4f6;
+    background-color: #d3ad69;
+    padding: 10px 20px;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    flex-grow: 0;
+    transition: all 180ms ease;
+    width: 8rem;
+    text-align: center;
+}
+
+.possible-words-box span:hover {
+    background-color: #3aa394;
+    transform: scale(1.04);
+}
+
+.close-btn {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 2.6rem;
+    color: #fa5252;
+    cursor: pointer;
+}
+
 footer {
     color: #1f2937;
     font-size: 0.8rem;
