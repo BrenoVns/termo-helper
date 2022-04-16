@@ -314,8 +314,14 @@ function reset() {
         input.classList.add("blocked");
         input.readOnly = true;
     });
-    blackSectionEl.classList.toggle("hide");
-    greenSectionEl.classList.toggle("hide");
+    blackInputs.forEach((input) => {
+        input.classList.add("blocked");
+        input.readOnly = true;
+    });
+    document.querySelector(".first-black").classList.remove("blocked");
+    document.querySelector(".first-black").readOnly = false;
+    // blackSectionEl.classList.toggle("hide");
+    // greenSectionEl.classList.toggle("hide");
 }
 
 function getBlackInputValues() {
