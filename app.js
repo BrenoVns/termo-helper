@@ -1,4 +1,13 @@
 // Styling
+
+
+
+// MORE THAN 1 YELLOW INPUT WITH SAME LETTER ISSUE
+
+
+
+
+
 const blackSectionEl = document.querySelector(".black");
 const yellowSectionEl = document.querySelector(".yellow");
 const greenSectionEl = document.querySelector(".green");
@@ -256,25 +265,6 @@ const alphabet = [
     "z",
 ];
 
-// const letters = [
-//     "b",
-//     "d",
-//     "h",
-//     "i",
-//     "j",
-//     "k",
-//     "l",
-//     "o",
-//     "p",
-//     "q",
-//     "s",
-//     "u",
-//     "w",
-//     "x",
-//     "y",
-//     "z",
-// ];
-
 let actualInputNum = 0;
 let firstLetter = [];
 let secondLetter = [];
@@ -301,6 +291,10 @@ function reset() {
     createdWords = [];
     possibleWords = [];
     matchingWords = [];
+    document.querySelectorAll(".possible-words-box span").forEach((word) => {
+        document.querySelector(".possible-words-box").removeChild(word);
+    });
+
     const inputs = document.querySelectorAll("input");
     inputs.forEach((input) => {
         input.value = null;
@@ -327,7 +321,13 @@ function reset() {
 function getBlackInputValues() {
     blackInputs.forEach((input) => {
         if (input.value) {
-            blackLetters.push(input.value);
+            let isValid = true;
+            blackLetters.forEach((letter) => {
+                if (letter === input.value) {
+                    isValid = false;
+                }
+            });
+            isValid && blackLetters.push(input.value);
         }
     });
     possibleLetters = alphabet.filter((x) => {
@@ -874,6 +874,14 @@ function getResult() {
                 });
             });
             if (matchingWords.length > 16) {
+                console.log("more than 16 words");
+                reset();
+                return;
+            }
+            if (matchingWords.length === 0) {
+                console.log("no words");
+                console.log(createdWords, "black", blackLetters);
+                reset();
                 return;
             }
             matchingWords.forEach((word) => {
@@ -886,7 +894,6 @@ function getResult() {
             ).innerText = `${matchingWords.length.toString()} possible words`;
             document.querySelector(".result-modal").showModal();
             console.log(matchingWords);
-            reset();
         });
 }
 
@@ -928,5 +935,6 @@ enterBtn.addEventListener("click", () => {
 });
 
 closeBtn.addEventListener("click", () => {
+    reset();
     document.querySelector(".result-modal").close();
 });
