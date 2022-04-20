@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Termo Helper</title>
+        <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
         <link rel="stylesheet" href="style.css" />
-        <script
-            type="module"
-            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-        ></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script src="termoWords.js" defer></script>
+        <script src="utilityFunctions.js" defer></script>
         <script src="app.js" defer></script>
+        <script src="defaultUX.js" defer></script>
     </head>
     <body>
         <header class="main-header">
@@ -22,21 +22,17 @@
         </header>
         <main>
             <div class="black">
-                <ion-icon
-                    name="chevron-forward-outline"
-                    class="arrow right"
-                ></ion-icon>
+                <ion-icon name="chevron-forward-outline" class="arrow right"></ion-icon>
 
-                <h2 class="heading-secondary">
-                    <span class="black-text">black</span> letters
-                </h2>
+                <h2 class="heading-secondary"><span class="black-text">black</span> letters</h2>
                 <div class="letters">
                     <input
                         type="text"
                         name=""
-                        class="letter-input black-input first-black"
+                        class="letter-input black-input blocked first-black"
                         maxlength="1"
                         autocomplete="off"
+                        readonly="true"
                     />
                     <input
                         type="text"
@@ -193,17 +189,9 @@
                 </div>
             </div>
             <div class="yellow hide">
-                <ion-icon
-                    name="chevron-back-outline"
-                    class="arrow left"
-                ></ion-icon>
-                <ion-icon
-                    name="chevron-forward-outline"
-                    class="arrow right"
-                ></ion-icon>
-                <h2 class="heading-secondary">
-                    <span class="yellow-text">yellow</span> letters
-                </h2>
+                <ion-icon name="chevron-back-outline" class="arrow left"></ion-icon>
+                <ion-icon name="chevron-forward-outline" class="arrow right"></ion-icon>
+                <h2 class="heading-secondary"><span class="yellow-text">yellow</span> letters</h2>
                 <div class="letters">
                     <input
                         type="text"
@@ -248,18 +236,13 @@
                 </div>
             </div>
             <div class="green hide">
-                <ion-icon
-                    name="chevron-back-outline"
-                    class="arrow left"
-                ></ion-icon>
-                <h2 class="heading-secondary">
-                    <span class="green-text">green</span> letters
-                </h2>
+                <ion-icon name="chevron-back-outline" class="arrow left"></ion-icon>
+                <h2 class="heading-secondary"><span class="green-text">green</span> letters</h2>
                 <div class="letters">
                     <input
                         type="text"
                         name=""
-                        class="letter-input green-input blocked"
+                        class="firstLetter letter-input green-input blocked"
                         maxlength="1"
                         id="green-1"
                         autocomplete="off"
@@ -268,7 +251,7 @@
                     <input
                         type="text"
                         name=""
-                        class="letter-input green-input blocked"
+                        class="secondLetter letter-input green-input blocked"
                         maxlength="1"
                         id="green-2"
                         autocomplete="off"
@@ -277,7 +260,7 @@
                     <input
                         type="text"
                         name=""
-                        class="letter-input green-input blocked"
+                        class="thirdLetter letter-input green-input blocked"
                         maxlength="1"
                         id="green-3"
                         autocomplete="off"
@@ -286,7 +269,7 @@
                     <input
                         type="text"
                         name=""
-                        class="letter-input green-input blocked"
+                        class="fourthLetter letter-input green-input blocked"
                         maxlength="1"
                         id="green-4"
                         autocomplete="off"
@@ -295,7 +278,7 @@
                     <input
                         type="text"
                         name=""
-                        class="letter-input green-input blocked"
+                        class="fifthLetter letter-input green-input blocked"
                         maxlength="1"
                         id="green-5"
                         autocomplete="off"
@@ -309,14 +292,13 @@
         <dialog class="result-modal">
             <div class="container">
                 <ion-icon name="close" class="close-btn"></ion-icon>
-                <h2 class="heading-secondary"></h2>
+                <h2 class="heading-secondary result-title"></h2>
                 <div class="possible-words-box"></div>
             </div>
         </dialog>
 
         <footer>
-            <ion-icon name="hammer-outline" class="footer-icon"></ion-icon
-            ><span>Developed by Breno Vassoler</span>
+            <ion-icon name="hammer-outline" class="footer-icon"></ion-icon><span>Developed by Breno Vassoler</span>
         </footer>
     </body>
 </html>
