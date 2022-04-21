@@ -72,20 +72,12 @@ function resetApp() {
     const resultWords = document.querySelectorAll(".possible-words-box span");
     const resultWordsBox = document.querySelector(".possible-words-box");
 
-    letters.firstLetterPossibilities = [];
-    letters.secondLetterPossibilities = [];
-    letters.thirdLetterPossibilities = [];
-    letters.fourthLetterPossibilities = [];
-    letters.fifthLetterPossibilities = [];
-    blackInputLetters = [];
-    yellowInputLetters = [];
-    possibleLetters = null;
     createdWords = [];
     matchingWords = [];
     resultWords.forEach((word) => {
         resultWordsBox.removeChild(word);
     });
-
+    resetLetters();
     resetVisualInputs();
 }
 
@@ -128,6 +120,7 @@ function getYellowInputValues() {
 }
 
 function getMatchedWords() {
+    // Maximum result length of 16 words
     for (const createdWord of createdWords) {
         TERMO_WORDS.includes(createdWord) && matchingWords.push(createdWord);
 
@@ -163,7 +156,6 @@ function enterBtnClickHandler() {
 function closeBtnClickHandler() {
     resetApp();
     resultModalElement.close();
-    console.log("asdf");
 }
 
 enterBtnElement.addEventListener("click", () => {

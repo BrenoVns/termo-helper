@@ -136,6 +136,17 @@ function setBlockedClass(input) {
     input.readOnly = true;
 }
 
+function resetLetters() {
+    letters.firstLetterPossibilities = [];
+    letters.secondLetterPossibilities = [];
+    letters.thirdLetterPossibilities = [];
+    letters.fourthLetterPossibilities = [];
+    letters.fifthLetterPossibilities = [];
+    blackInputLetters = [];
+    yellowInputLetters = [];
+    possibleLetters = null;
+}
+
 function resetVisualInputs() {
     for (const input of letterInputElements) {
         input.value = null;
