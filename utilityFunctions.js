@@ -1,19 +1,19 @@
-//STYLE
+//UX
 
 function inputFocusHandler(input) {
     let previousInput;
 
-    if (input.classList.contains("edit")) {
+    if (input.classList.contains("editing-input")) {
         return;
     }
-    input.classList.toggle("edit");
+    input.classList.toggle("editing-input");
 
     if (!previousInput) {
         previousInput = input;
         return;
     }
 
-    previousInput.classList.toggle("edit");
+    previousInput.classList.toggle("editing-input");
     previousInput = input;
 }
 
@@ -22,7 +22,7 @@ function inputChangeHandler(input, event) {
 
     if (event.inputType === "deleteContentBackward") {
         inputClasslist.remove("filled-input");
-        inputClasslist.add("blocked");
+        inputClasslist.add("blocked-input");
         input.readOnly = true;
 
         if (!input.previousElementSibling) {
@@ -41,7 +41,7 @@ function inputChangeHandler(input, event) {
             input.blur();
             return;
         }
-        input.nextElementSibling.classList.remove("blocked");
+        input.nextElementSibling.classList.remove("blocked-input");
         input.nextElementSibling.focus();
         input.nextElementSibling.readOnly = false;
     }
@@ -51,19 +51,19 @@ function inputClickHandler(input, inputColorElements) {
     if (input.readOnly === true) {
         for (const input_ of inputColorElements) {
             if (input_.readOnly === false && !input_.classList.contains("filled-input")) {
-                input_.classList.add("blocked");
+                input_.classList.add("blocked-input");
                 input_.readOnly = true;
                 break;
             }
         }
-        input.classList.remove("blocked");
+        input.classList.remove("blocked-input");
         input.readOnly = false;
     }
 
     if (input.classList.contains("filled-input")) {
         for (const input_ of inputColorElements) {
             if (input_.readOnly === false && !input_.classList.contains("filled-input")) {
-                input_.classList.add("blocked");
+                input_.classList.add("blocked-input");
                 input_.readOnly = true;
                 break;
             }
@@ -106,7 +106,7 @@ function arrowClickHandler(arrowSide) {
 //APP LOGIC
 
 function setBlockedClass(input) {
-    input.classList.add("blocked");
+    input.classList.add("blocked-input");
     input.readOnly = true;
 }
 

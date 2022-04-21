@@ -1,11 +1,14 @@
-//GLOBAL VARIABLES
+//All global variables, and main logic algorithm
 
-let actualSection = 0;
-const blackSectionElement = document.querySelector(".black");
-const yellowSectionElement = document.querySelector(".yellow");
-const greenSectionElement = document.querySelector(".green");
-const rightArrowElements = document.querySelectorAll(".right");
-const leftArrowElements = document.querySelectorAll(".left");
+// GLOBAL VARIABLES
+
+//      DOM Selections
+
+const blackSectionElement = document.querySelector(".black-section");
+const yellowSectionElement = document.querySelector(".yellow-section");
+const greenSectionElement = document.querySelector(".green-section");
+const rightArrowElements = document.querySelectorAll(".right-arrow");
+const leftArrowElements = document.querySelectorAll(".left-arrow");
 const letterInputElements = document.querySelectorAll(".letter-input");
 const blackInputElements = document.querySelectorAll(".black-input");
 const yellowInputElements = document.querySelectorAll(".yellow-input");
@@ -14,6 +17,10 @@ const enterBtnElement = document.querySelector(".enter-btn");
 const possibleWordsBoxElement = document.querySelector(".possible-words-box");
 const resultModalElement = document.querySelector(".result-modal");
 const closeBtnElement = document.querySelector(".close-btn");
+
+//      Const's and Variables
+
+let actualSection = 0;
 const ALPHABET_LETTERS = [
     "a",
     "b",
@@ -138,7 +145,7 @@ function getMatchedWords() {
     setResultWords();
 }
 
-function enterBtnHandler() {
+function enterBtnClickHandler() {
     let isValid = false;
 
     for (const input of letterInputElements) {
@@ -151,15 +158,15 @@ function enterBtnHandler() {
     isValid && runAppLogic();
 }
 
-function closeBtnHandler() {
+function closeBtnClickHandler() {
     resetApp();
     resultModalElement.close();
 }
 
 enterBtnElement.addEventListener("click", () => {
-    enterBtnHandler();
+    enterBtnClickHandler();
 });
 
 closeBtnElement.addEventListener("click", () => {
-    closeBtnHandler();
+    closeBtnClickHandler();
 });

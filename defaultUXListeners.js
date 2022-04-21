@@ -1,3 +1,5 @@
+// All UX Handlers
+
 letterInputElements.forEach((input) => {
     input.addEventListener("focus", () => {
         inputFocusHandler(input);
