@@ -1,5 +1,31 @@
 //UX
 
+function changeVisualScreenMode() {
+    mainSection.classList.toggle("screen-mode-full");
+    changeScreenBtnElements.forEach((btn) => {
+        btn.classList.toggle("hide");
+    });
+}
+
+function setScreenMode() {
+    if (sessionStorage.getItem("screenMode") === "1") {
+        changeVisualScreenMode();
+        return;
+    }
+
+    sessionStorage.setItem("screenMode", "0");
+}
+
+function screenButtonClickHandler() {
+    changeVisualScreenMode();
+
+    if (sessionStorage.getItem("screenMode") === "0") {
+        sessionStorage.setItem("screenMode", "1");
+        return;
+    }
+    sessionStorage.setItem("screenMode", "0");
+}
+
 function inputFocusHandler(input) {
     let previousInput;
 

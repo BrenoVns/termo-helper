@@ -4,6 +4,8 @@
 
 //      DOM Selections
 
+const changeScreenBtnElements = document.querySelectorAll(".change-screen-btn");
+const mainSection = document.querySelector(".main-section");
 const blackSectionElement = document.querySelector(".black-section");
 const yellowSectionElement = document.querySelector(".yellow-section");
 const greenSectionElement = document.querySelector(".green-section");
@@ -67,6 +69,9 @@ let matchingWords = [];
 // App Logic
 
 function resetApp() {
+    const resultWords = document.querySelectorAll(".possible-words-box span");
+    const resultWordsBox = document.querySelector(".possible-words-box");
+
     letters.firstLetterPossibilities = [];
     letters.secondLetterPossibilities = [];
     letters.thirdLetterPossibilities = [];
@@ -77,14 +82,11 @@ function resetApp() {
     possibleLetters = null;
     createdWords = [];
     matchingWords = [];
-    document.querySelectorAll(".possible-words-box span").forEach((word) => {
-        document.querySelector(".possible-words-box").removeChild(word);
+    resultWords.forEach((word) => {
+        resultWordsBox.removeChild(word);
     });
 
     resetVisualInputs();
-
-    // blackSectionElement.classList.toggle("hide");
-    // greenSectionElement.classList.toggle("hide");
 }
 
 function getBlackInputValues() {
@@ -161,6 +163,7 @@ function enterBtnClickHandler() {
 function closeBtnClickHandler() {
     resetApp();
     resultModalElement.close();
+    console.log("asdf");
 }
 
 enterBtnElement.addEventListener("click", () => {

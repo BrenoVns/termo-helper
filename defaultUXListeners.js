@@ -1,5 +1,14 @@
 // All UX Handlers
 
+//  Set screen mode based on session storage data
+setScreenMode();
+
+changeScreenBtnElements.forEach((button) => {
+    button.addEventListener("click", () => {
+        screenButtonClickHandler();
+    });
+});
+
 letterInputElements.forEach((input) => {
     input.addEventListener("focus", () => {
         inputFocusHandler(input);
