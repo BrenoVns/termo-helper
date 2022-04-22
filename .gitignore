@@ -1,3 +1,5 @@
+.vscode
+Screenshot_*
 # Logs
 logs
 *.log

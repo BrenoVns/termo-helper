@@ -1,7 +1,6 @@
 // All UX Handlers
 
-//  Set screen mode based on session storage data
-setScreenMode();
+setScreenMode(); // Set screen mode based on session storage data
 
 changeScreenBtnElements.forEach((button) => {
     button.addEventListener("click", () => {

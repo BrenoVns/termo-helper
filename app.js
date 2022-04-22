@@ -2,8 +2,8 @@
 
 // GLOBAL VARIABLES
 
-//      DOM Selections
 
+//      DOM Selections
 const changeScreenBtnElements = document.querySelectorAll(".change-screen-btn");
 const mainSection = document.querySelector(".main-section");
 const blackSectionElement = document.querySelector(".black-section");
@@ -20,8 +20,8 @@ const possibleWordsBoxElement = document.querySelector(".possible-words-box");
 const resultModalElement = document.querySelector(".result-modal");
 const closeBtnElement = document.querySelector(".close-btn");
 
-//      Const's and Variables
 
+//      Const's and Variables
 let actualSection = 0;
 const ALPHABET_LETTERS = [
     "a",
