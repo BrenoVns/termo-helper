@@ -1,79 +1,47 @@
-//All global variables, and main logic algorithm
+import { TERMO_WORDS } from "./termoWordsRepository.js";
+import { createLettersValidator } from "./validators.js";
+import {
+    letterInputElements,
+    blackInputElements,
+    yellowInputElements,
+    greenInputElements,
+    enterBtnElement,
+    possibleWordsBoxElement,
+    resultModalElement,
+    closeBtnElement,
+} from "./globalVariables.js";
 
-// GLOBAL VARIABLES
+let blackLetters = [];
+let yellowLetters = [];
+let greenLetters = [];
+let possibleWords = [];
 
+// Reset logic
+function setBlockedClass(input) {
+    input.classList.add("blocked-input");
+    input.readOnly = true;
+}
 
-//      DOM Selections
-const changeScreenBtnElements = document.querySelectorAll(".change-screen-btn");
-const mainSection = document.querySelector(".main-section");
-const blackSectionElement = document.querySelector(".black-section");
-const yellowSectionElement = document.querySelector(".yellow-section");
-const greenSectionElement = document.querySelector(".green-section");
-const rightArrowElements = document.querySelectorAll(".right-arrow");
-const leftArrowElements = document.querySelectorAll(".left-arrow");
-const letterInputElements = document.querySelectorAll(".letter-input");
-const blackInputElements = document.querySelectorAll(".black-input");
-const yellowInputElements = document.querySelectorAll(".yellow-input");
-const greenInputElements = document.querySelectorAll(".green-input");
-const enterBtnElement = document.querySelector(".enter-btn");
-const possibleWordsBoxElement = document.querySelector(".possible-words-box");
-const resultModalElement = document.querySelector(".result-modal");
-const closeBtnElement = document.querySelector(".close-btn");
+function resetLetters() {
+    blackLetters = [];
+    yellowLetters = [];
+    greenLetters = [];
+    possibleWords = [];
+}
 
-
-//      Const's and Variables
-let actualSection = 0;
-const ALPHABET_LETTERS = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-];
-let letters = {
-    firstLetterPossibilities: [],
-    secondLetterPossibilities: [],
-    thirdLetterPossibilities: [],
-    fourthLetterPossibilities: [],
-    fifthLetterPossibilities: [],
-};
-let lettersKeys = Object.keys(letters);
-const LETTERS_KEYS_LENGTH = lettersKeys.length;
-let blackInputLetters = [];
-let yellowInputLetters = [];
-let possibleLetters;
-let createdWords = [];
-let matchingWords = [];
-
-// App Logic
+function resetVisualInputs() {
+    for (const input of letterInputElements) {
+        input.value = null;
+        input.classList.remove("filled-input");
+        setBlockedClass(input);
+    }
+}
 
 function resetApp() {
     const resultWords = document.querySelectorAll(".possible-words-box span");
     const resultWordsBox = document.querySelector(".possible-words-box");
 
-    createdWords = [];
-    matchingWords = [];
+    possibleWords = [];
     resultWords.forEach((word) => {
         resultWordsBox.removeChild(word);
     });
@@ -81,63 +49,72 @@ function resetApp() {
     resetVisualInputs();
 }
 
-function getBlackInputValues() {
+function setLetterArrays() {
     blackInputElements.forEach((input) => {
-        if (input.value) {
-            let isValid = true;
-            blackInputLetters.forEach((letter) => {
-                if (letter === input.value) {
-                    isValid = false;
-                }
-            });
-            isValid && blackInputLetters.push(input.value);
-        }
+        input.value && blackLetters.push(input.value.toLowerCase());
     });
-    possibleLetters = ALPHABET_LETTERS.filter((letter) => {
-        return !blackInputLetters.includes(letter);
+    yellowInputElements.forEach((input) => {
+        yellowLetters.push(input.value.toLowerCase());
+    });
+    greenInputElements.forEach((input) => {
+        greenLetters.push(input.value.toLowerCase());
     });
 }
 
-function getGreenInputValues() {
-    let actualInputIndex = 0;
+// App Logic
+const BATCH_SIZE = 16;
 
-    lettersKeys.forEach((key) => {
-        const hasValue = greenInputElements[actualInputIndex].value || false;
+function getResultWordsByBatch(allWords, batchSize, isValidWord) {
+    for (const word of allWords) {
+        if (!isValidWord(word)) continue;
 
-        letters[key] = hasValue ? [greenInputElements[actualInputIndex].value] : [...possibleLetters];
+        possibleWords.push(word);
 
-        actualInputIndex++;
-    });
-}
-
-function getYellowInputValues() {
-    console.log("started");
-    setFilteredPossibilities();
-    console.log("filtered possibilities");
-    console.log("creating words");
-    getCreatedWords();
-    console.log("finished");
-}
-
-function getMatchedWords() {
-    // Maximum result length of 16 words
-    for (const createdWord of createdWords) {
-        TERMO_WORDS.includes(createdWord) && matchingWords.push(createdWord);
-
-        if (matchingWords.length > 16) {
-            console.log("more than 16 words");
-            resetApp();
-            return;
+        if (possibleWords.length >= batchSize) {
+            return possibleWords;
         }
     }
+}
 
-    if (!matchingWords.length) {
-        console.log("no words");
-        resetApp();
-        return;
-    }
+function getResult() {
+    const inputLettersValidators = {
+        black: createLettersValidator("black"),
+        yellow: createLettersValidator("yellow"),
+        green: createLettersValidator("green"),
+    };
+    inputLettersValidators["black"].getInputLetters(blackLetters);
+    inputLettersValidators["yellow"].getInputLetters(yellowLetters);
+    inputLettersValidators["green"].getInputLetters(greenLetters);
 
-    setResultWords();
+    const isValidWord = (word) => {
+        for (const validator in inputLettersValidators) {
+            if (!inputLettersValidators[validator].validateWord(word)) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    getResultWordsByBatch(TERMO_WORDS, BATCH_SIZE, isValidWord);
+}
+
+function setResultWordsScreen() {
+    const resultTitle = document.querySelector(".result-title");
+
+    possibleWords.forEach((matchedWord) => {
+        const wordElement = document.createElement("span");
+        wordElement.innerText = matchedWord;
+        possibleWordsBoxElement.appendChild(wordElement);
+    });
+
+    resultTitle.innerText = `${possibleWords.length.toString()} possible words`;
+    resultModalElement.showModal();
+}
+
+function runAppLogic() {
+    setLetterArrays();
+    getResult();
+    setResultWordsScreen();
 }
 
 function enterBtnClickHandler() {

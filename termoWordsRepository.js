@@ -1,4 +1,4 @@
-const TERMO_WORDS = [
+export const TERMO_WORDS = [
     "aanas",
     "aarus",
     "aasto",
