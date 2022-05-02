@@ -10,7 +10,10 @@ import {
     blackInputElements,
     yellowInputElements,
     greenInputElements,
+    enterBtnElement,
 } from "./globalVariables.js";
+
+let actualSection = 0;
 
 // Handlers
 function screenButtonClickHandler() {
@@ -105,6 +108,7 @@ function arrowClickHandler(arrowSide) {
         if (actualSection === 1) {
             yellowSectionElement.classList.toggle("hide");
             greenSectionElement.classList.toggle("hide");
+            enterBtnElement.classList.toggle("hide");
             actualSection = 2;
             return;
         }
@@ -120,6 +124,7 @@ function arrowClickHandler(arrowSide) {
         if (actualSection === 2) {
             greenSectionElement.classList.toggle("hide");
             yellowSectionElement.classList.toggle("hide");
+            enterBtnElement.classList.toggle("hide");
             actualSection = 1;
             return;
         }

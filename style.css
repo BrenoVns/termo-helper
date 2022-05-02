@@ -6,12 +6,188 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;500;600;700&display=swap");
 
+@media (max-width: 1024px) {
+    .screen-mode-full.main-section .heading-secondary {
+        font-size: 3rem;
+    }
+
+    main.screen-mode-full.main-section {
+        margin-top: 9.2vh;
+        flex-direction: column;
+    }
+
+    .screen-mode-full.main-section .heading-secondary {
+        margin-bottom: 1.2rem;
+    }
+
+    .screen-mode-full.main-section .letters {
+        row-gap: 0.5rem;
+        column-gap: 0.5rem;
+    }
+
+    .screen-mode-full.main-section .letter-input {
+        height: 6.8rem;
+        width: 6.8rem;
+        border: 0.6rem solid var(--dark-brown-color);
+        font-size: 3.2rem;
+    }
+
+    .screen-mode-full.main-section .editing-input {
+        border-bottom: 1.2rem solid var(--dark-brown-color);
+    }
+
+    .screen-mode-full.main-section .yellow-green-wrap {
+        justify-content: flex-start;
+        gap: 3.64rem;
+        margin-top: 3.64rem;
+    }
+
+    .screen-mode-full.main-section .enter-btn {
+        border: 0.5rem solid var(--dark-brown-color);
+        border-radius: 1.2rem;
+        padding: 1rem 2.8rem;
+        font-size: 2rem;
+        left: 50%;
+        bottom: -70%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header .change-screen-btn,
+    .main-header .help-btn {
+        top: 110%;
+    }
+
+    .main-header .help-btn {
+        right: 42%;
+        transform: translateX(50%);
+    }
+
+    .main-header .help-btn:hover {
+        transform: translate(50%, -8%);
+    }
+
+    .main-header .change-screen-btn {
+        left: 42%;
+        transform: translate(-50%, -10%);
+    }
+
+    .main-header .change-screen-btn:hover {
+        transform: translate(-50%, -18%);
+    }
+
+    .main-section .arrow {
+        top: 136%;
+    }
+
+    .main-section .left-arrow {
+        left: 10%;
+    }
+
+    .main-section .right-arrow {
+        right: 10%;
+    }
+
+    .main-section .black-section .right-arrow {
+        top: 108%;
+    }
+
+    .main-section .enter-btn {
+        bottom: -70%;
+    }
+
+    footer.footer {
+        bottom: 0.4%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header .heading-primary {
+        font-size: 4.6rem;
+    }
+
+    .main-section .heading-secondary {
+        font-size: 3.2rem;
+    }
+
+    body .main-header {
+        padding-top: 3rem;
+    }
+
+    .main-header .change-screen-btn,
+    .main-header .help-btn {
+        top: 110%;
+    }
+
+    .main-header .change-screen-btn {
+        display: none;
+    }
+
+    .main-header .help-btn {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .main-header .help-btn:hover {
+        transform: translate(50%, -12%);
+    }
+
+    body .main-section {
+        margin-top: 20vh;
+    }
+
+    .main-section .letters {
+        row-gap: 0.4rem;
+        column-gap: 0.4rem;
+    }
+
+    .main-section .letter-input {
+        height: 6.4rem;
+        width: 6.4rem;
+        border: 0.5rem solid var(--dark-brown-color);
+    }
+
+    .main-section .editing-input {
+        border-bottom: 1rem solid var(--dark-brown-color);
+    }
+
+    .main-section .enter-btn {
+        font-size: 2rem;
+        bottom: -76%;
+        padding: 1rem 2.8rem;
+        border: 0.5rem solid var(--dark-brown-color);
+    }
+
+    dialog.result-modal {
+        width: 34rem;
+        height: 36rem;
+    }
+
+    .result-modal .heading-secondary {
+        font-size: 2.8rem;
+    }
+
+    .result-modal .possible-words-box {
+        gap: 0.76rem;
+    }
+
+    .result-modal .possible-words-box span {
+        font-size: 1.6rem;
+        width: 6.8rem;
+    }
+
+    footer.footer,
+    footer.footer-icon {
+        font-size: 1rem;
+    }
+}
+
 /* Global
 ------------------------------------- */
 
 :root {
     /* Color Variables */
-
     --white-color: #f3f4f6;
     --grey-color: #c2c3c5;
     --black-color: #1f2937;
@@ -36,7 +212,7 @@
 
 html {
     user-select: none;
-    /* font-size: 10px; */
+    font-size: 62.5%;
 }
 
 body {
@@ -56,14 +232,14 @@ body {
 
 .heading-primary {
     position: relative;
-    font-size: 3.5rem;
+    font-size: 5.2rem;
     letter-spacing: -0.1rem;
     word-spacing: 0.6rem;
     display: inline-block;
 }
 
 .heading-secondary {
-    font-size: 2.4rem;
+    font-size: 3.6rem;
     margin-bottom: 2.6rem;
 }
 
@@ -79,14 +255,20 @@ body {
 /* Screen Mode Full
 ------------------------------------- */
 
-/* Class setted on main section */
-.screen-mode-full {
-    gap: 7rem;
-    margin-top: 10rem !important;
+.screen-mode-full.main-section {
+    gap: 6%;
+    margin-top: 22rem;
 }
 
 .screen-mode-full .main-header {
     padding: 1.7rem 0 10rem 0;
+}
+
+.screen-mode-full .yellow-green-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 39rem;
 }
 
 .screen-mode-full .black-section,
@@ -96,13 +278,18 @@ body {
 }
 
 .screen-mode-full .heading-secondary {
-    font-size: 2.2rem;
+    font-size: 3.4rem;
 }
 
 .screen-mode-full .letter-input {
-    height: 5.6rem;
-    width: 5.6rem;
-    font-size: 2.8rem;
+    height: 7.6rem;
+    width: 7.6rem;
+    font-size: 3.8rem;
+    border: 0.64rem solid var(--dark-brown-color);
+}
+
+.screen-mode-full .editing-input {
+    border-bottom: 1.28rem solid var(--dark-brown-color);
 }
 
 .screen-mode-full .arrow {
@@ -110,11 +297,10 @@ body {
 }
 
 .screen-mode-full .enter-btn {
-    left: -74%;
-    bottom: -156%;
-    font-size: 1.5rem;
-    padding: 0.7rem 2.7rem;
-    border: 0.4rem solid var(--dark-brown-color);
+    display: block;
+    bottom: -80%;
+    left: -50%;
+    transform: translateX(50%);
 }
 
 /* Screen Mode Full
@@ -123,7 +309,7 @@ body {
 ------------------------------------- */
 
 .main-header {
-    padding-top: 1.7rem;
+    padding-top: 1.8rem;
     display: flex;
     justify-content: center;
     position: relative;
@@ -144,7 +330,7 @@ body {
 
 .change-screen-btn,
 .help-btn {
-    font-size: 1.4rem;
+    font-size: 2rem;
     color: var(--grey-color);
     border-radius: 8px;
     padding: 4px;
@@ -162,7 +348,7 @@ body {
 }
 
 .change-screen-btn {
-    font-size: 2rem;
+    font-size: 3.2rem;
     left: -20%;
 }
 
@@ -182,24 +368,23 @@ body {
 ------------------------------------- */
 
 .main-section {
+    margin-top: 32vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 18rem;
 }
 
 .arrow {
-    font-size: 2.8rem;
+    font-size: 4.2rem;
     color: var(--white-color);
     position: absolute;
     cursor: pointer;
-    border-radius: 1.2rem;
+    border-radius: 1.4rem;
     padding: 0.2rem;
     transition: all 280ms;
 }
 
-.left-arrow,
-.right-arrow {
+.arrow {
     top: 50%;
 }
 
@@ -222,17 +407,17 @@ body {
 .letters {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    row-gap: 0.4rem;
-    column-gap: 0.4rem;
+    row-gap: 0.6rem;
+    column-gap: 0.6rem;
 }
 
 .letter-input {
-    height: 6rem;
-    width: 6rem;
+    height: 8.4rem;
+    width: 8.4rem;
     background-color: var(--light-brown-color);
-    border: 0.46rem solid var(--dark-brown-color);
-    border-radius: 0.8rem;
-    font-size: 3.2rem;
+    border: 0.68rem solid var(--dark-brown-color);
+    border-radius: 1rem;
+    font-size: 4rem;
     color: var(--white-color);
     font-weight: 700;
     text-align: center;
@@ -242,7 +427,7 @@ body {
 }
 
 .editing-input {
-    border-bottom: 0.9rem solid var(--dark-brown-color);
+    border-bottom: 1.2rem solid var(--dark-brown-color);
 }
 
 .black-section,
@@ -252,11 +437,11 @@ body {
 }
 
 .enter-btn {
-    border: 0.4rem solid var(--dark-brown-color);
-    border-radius: 0.8rem;
+    border: 0.52rem solid var(--dark-brown-color);
+    border-radius: 1.2rem;
     background-color: var(--dark-brown-color);
-    padding: 0.8rem 2.8rem;
-    font-size: 1.6rem;
+    padding: 1.2rem 3.4rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--white-color);
     text-transform: uppercase;
@@ -285,7 +470,7 @@ body {
     color: var(--black-color);
 }
 
-.black-section .filled-input {
+.main-section .black-section .filled-input {
     background-color: #1f2937;
     border: none;
 }
@@ -304,7 +489,7 @@ body {
     color: var(--yellow-color);
 }
 
-.yellow-section .filled-input {
+.main-section .yellow-section .filled-input {
     background-color: var(--yellow-color);
     border: none;
 }
@@ -319,7 +504,7 @@ body {
     color: var(--green-color);
 }
 
-.green-section .filled-input {
+.main-section .green-section .filled-input {
     background-color: var(--green-color);
     border: none;
 }
@@ -360,7 +545,7 @@ body {
 }
 
 .result-title {
-    margin: 1rem 0 4.8rem 0;
+    margin-bottom: 4.8rem;
     word-spacing: 0.4rem;
 }
 
@@ -412,15 +597,15 @@ body {
 
 .footer {
     color: var(--black-color);
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     font-weight: 500;
     position: absolute;
     left: 0.6%;
-    bottom: 1%;
+    bottom: 0.6%;
 }
 
 .footer-icon {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: var(--black-color);
     margin-right: 0.2rem;
 }
