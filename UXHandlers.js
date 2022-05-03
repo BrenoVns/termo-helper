@@ -136,6 +136,7 @@ function changeVisualScreenMode() {
     changeScreenBtnElements.forEach((btn) => {
         btn.classList.toggle("hide");
     });
+    enterBtnElement.classList.remove("hide");
 }
 
 function setScreenMode() {

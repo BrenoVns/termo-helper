@@ -6,17 +6,17 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;500;600;700&display=swap");
 
-@media (max-width: 1024px) {
-    .screen-mode-full.main-section .heading-secondary {
-        font-size: 3rem;
-    }
+/* Media Queries
+------------------------------------- */
 
+@media (max-width: 1024px) {
     main.screen-mode-full.main-section {
         margin-top: 9.2vh;
         flex-direction: column;
     }
 
     .screen-mode-full.main-section .heading-secondary {
+        font-size: 3rem;
         margin-bottom: 1.2rem;
     }
 
@@ -29,7 +29,7 @@
         height: 6.8rem;
         width: 6.8rem;
         border: 0.6rem solid var(--dark-brown-color);
-        font-size: 3.2rem;
+        font-size: 3.8rem;
     }
 
     .screen-mode-full.main-section .editing-input {
@@ -43,13 +43,27 @@
     }
 
     .screen-mode-full.main-section .enter-btn {
-        border: 0.5rem solid var(--dark-brown-color);
+        border: 0.48rem solid var(--dark-brown-color);
         border-radius: 1.2rem;
         padding: 1rem 2.8rem;
         font-size: 2rem;
         left: 50%;
         bottom: -70%;
         transform: translateX(-50%);
+    }
+
+    .screen-mode-full.main-section .reset-btn {
+        font-size: 2.6rem;
+        border: 0.48rem solid var(--dark-brown-color);
+        border-radius: 1.2rem;
+        padding: 1rem;
+        left: 76.4%;
+        bottom: -71%;
+        transform: translateX(-50%);
+    }
+
+    .result-modal .possible-words-box {
+        width: 50rem;
     }
 }
 
@@ -97,22 +111,43 @@
         bottom: -70%;
     }
 
+    dialog.result-modal {
+        width: 46rem;
+    }
+
+    .result-modal .result-title {
+        font-size: 3.8rem;
+        margin: 6rem 0;
+    }
+
+    .result-modal-container .possible-words-box {
+        width: 36rem;
+        height: 31.4rem;
+    }
+
+    .result-modal .possible-words-box span {
+        width: 8rem;
+        height: 5rem;
+        font-size: 2rem;
+    }
+
+    .possible-words-box .load-more-btn {
+        font-size: 3.8rem;
+        padding: 0.6rem 15.2rem;
+    }
+
     footer.footer {
         bottom: 0.4%;
     }
 }
 
 @media (max-width: 480px) {
-    .main-header .heading-primary {
-        font-size: 4.6rem;
-    }
-
-    .main-section .heading-secondary {
-        font-size: 3.2rem;
-    }
-
     body .main-header {
         padding-top: 3rem;
+    }
+
+    .main-header .heading-primary {
+        font-size: 4.6rem;
     }
 
     .main-header .change-screen-btn,
@@ -134,7 +169,11 @@
     }
 
     body .main-section {
-        margin-top: 20vh;
+        margin-top: clamp(10rem, 28vh, 100vh);
+    }
+
+    .main-section .heading-secondary {
+        font-size: 3.2rem;
     }
 
     .main-section .letters {
@@ -146,6 +185,7 @@
         height: 6.4rem;
         width: 6.4rem;
         border: 0.5rem solid var(--dark-brown-color);
+        font-size: 3.4rem;
     }
 
     .main-section .editing-input {
@@ -156,25 +196,47 @@
         font-size: 2rem;
         bottom: -76%;
         padding: 1rem 2.8rem;
-        border: 0.5rem solid var(--dark-brown-color);
+        border: 0.48rem solid var(--dark-brown-color);
+    }
+
+    .main-section .reset-btn {
+        font-size: 3rem;
+        padding: 0.8rem;
+        left: 78%;
+        bottom: -76.2%;
     }
 
     dialog.result-modal {
         width: 34rem;
-        height: 36rem;
+        height: 46rem;
     }
 
-    .result-modal .heading-secondary {
+    .result-modal .result-modal-container {
+        height: 42.4rem;
+    }
+
+    .result-modal .possible-words-box {
+        width: 30rem;
+    }
+
+    .result-modal .result-title {
         font-size: 2.8rem;
     }
 
     .result-modal .possible-words-box {
-        gap: 0.76rem;
+        height: 26rem;
+        gap: 0.7rem;
     }
 
     .result-modal .possible-words-box span {
         font-size: 1.6rem;
         width: 6.8rem;
+        height: 4.2rem;
+    }
+
+    .result-modal .load-more-btn {
+        font-size: 3.6rem;
+        padding: 0.3rem 12.8rem;
     }
 
     footer.footer,
@@ -183,6 +245,8 @@
     }
 }
 
+/* Media Queries
+------------------------------------- */
 /* Global
 ------------------------------------- */
 
@@ -284,7 +348,7 @@ body {
 .screen-mode-full .letter-input {
     height: 7.6rem;
     width: 7.6rem;
-    font-size: 3.8rem;
+    font-size: 4.2rem;
     border: 0.64rem solid var(--dark-brown-color);
 }
 
@@ -297,9 +361,14 @@ body {
 }
 
 .screen-mode-full .enter-btn {
-    display: block;
     bottom: -80%;
     left: -50%;
+    transform: translateX(50%);
+}
+
+.screen-mode-full .reset-btn {
+    bottom: -80%;
+    left: -3.4%;
     transform: translateX(50%);
 }
 
@@ -417,7 +486,7 @@ body {
     background-color: var(--light-brown-color);
     border: 0.68rem solid var(--dark-brown-color);
     border-radius: 1rem;
-    font-size: 4rem;
+    font-size: 4.6rem;
     color: var(--white-color);
     font-weight: 700;
     text-align: center;
@@ -437,7 +506,7 @@ body {
 }
 
 .enter-btn {
-    border: 0.52rem solid var(--dark-brown-color);
+    border: 0.48rem solid var(--dark-brown-color);
     border-radius: 1.2rem;
     background-color: var(--dark-brown-color);
     padding: 1.2rem 3.4rem;
@@ -460,6 +529,30 @@ body {
 }
 
 .enter-btn:active {
+    border-color: var(--medium-brown-color);
+    background-color: var(--medium-brown-color);
+}
+
+.reset-btn {
+    font-size: 3rem;
+    padding: 1.1rem;
+    border: 0.48rem solid var(--dark-brown-color);
+    border-radius: 1.2rem;
+    background-color: var(--dark-brown-color);
+    color: var(--white-color);
+    position: absolute;
+    left: 74%;
+    bottom: -70.4%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    transition: all 200ms ease;
+}
+
+.reset-btn:hover {
+    background-color: var(--light-brown-color);
+}
+
+.reset-btn:active {
     border-color: var(--medium-brown-color);
     background-color: var(--medium-brown-color);
 }
@@ -521,8 +614,8 @@ body {
 
 .result-modal {
     user-select: none;
-    height: 32rem;
-    width: 42rem;
+    height: clamp(10rem, 58.8vh, 120rem);
+    width: clamp(60rem, 64vw, 70rem);
     background-color: #312b2d;
     border: none;
     border-radius: 12px;
@@ -541,44 +634,70 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 52vh;
+    overflow: hidden;
 }
 
 .result-title {
-    margin-bottom: 4.8rem;
+    font-size: 4.4rem;
+    margin: 5rem 0;
     word-spacing: 0.4rem;
 }
 
 .possible-words-box {
     display: flex;
-    gap: 0.6rem;
+    width: clamp(40rem, 50vw, 44rem);
+    height: 34vh;
+    gap: 0.8rem;
     justify-content: center;
     flex-wrap: wrap;
+    align-content: flex-start;
+    overflow-y: scroll;
+}
+
+.possible-words-box::-webkit-scrollbar {
+    display: none;
 }
 
 .possible-words-box span {
-    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
     font-weight: 600;
     text-transform: uppercase;
     color: var(--white-color);
     background-color: var(--yellow-color);
-    padding: 10px 0;
     border-radius: 1rem;
-    width: 8rem;
-    text-align: center;
+    width: 10.2rem;
+    height: 5.6rem;
     transition: all 180ms ease;
 }
 
 .possible-words-box span:hover {
     background-color: var(--green-color);
-    transform: scale(1.04);
+    transform: scale(1.028);
+}
+
+.load-more-btn {
+    font-size: 4.2rem;
+    color: var(--white-color);
+    background-color: var(--green-color);
+    border-radius: 1rem;
+    padding: 0.7rem 19.5rem;
+    cursor: pointer;
+    transition: all 180ms ease;
+}
+
+.load-more-btn:hover {
+    background-color: #2e8276;
 }
 
 .close-btn {
     position: absolute;
-    right: 12px;
-    top: 12px;
-    font-size: 2.8rem;
+    right: 2.6%;
+    top: 3.2%;
+    font-size: 4.2rem;
     color: var(--red-color);
     cursor: pointer;
     transition: all 180ms ease;

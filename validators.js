@@ -1,5 +1,5 @@
 export function createLettersValidator(inputColor) {
-    const validatorName = `${inputColor} inputs validator`;
+    const validatorName = `${inputColor} validator inputs`;
 
     const validator = { name: validatorName };
 
@@ -21,7 +21,7 @@ function setBlackValidator(validator) {
         });
 
         validator.inputLetters = uniqueLetters;
-        console.log(validator.inputLetters);
+        console.log(validator.name, validator.inputLetters);
     };
 
     validator.validateWord = function (word) {
@@ -51,7 +51,7 @@ function setYellowValidator(validator) {
         validator.inputLetters = inputs;
 
         validator.inputLettersCount = validator.getLettersCount(inputs); //Getting input letters count
-        console.log(validator.inputLettersCount);
+        console.log(validator.name, validator.inputLettersCount);
     };
 
     validator.validateWord = function (word) {
@@ -79,7 +79,7 @@ function setYellowValidator(validator) {
 function setGreenValidator(validator) {
     validator.getInputLetters = function (inputs) {
         validator.inputLetters = inputs;
-        console.log(validator.inputLetters);
+        console.log(validator.name, validator.inputLetters);
     };
 
     validator.validateWord = function (word) {

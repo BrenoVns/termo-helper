@@ -6,6 +6,7 @@ import {
     yellowInputElements,
     greenInputElements,
     enterBtnElement,
+    resetBtnElement,
     possibleWordsBoxElement,
     resultModalElement,
     closeBtnElement,
@@ -14,7 +15,6 @@ import {
 let blackLetters = [];
 let yellowLetters = [];
 let greenLetters = [];
-let possibleWords = [];
 
 // Reset logic
 function setBlockedClass(input) {
@@ -22,11 +22,10 @@ function setBlockedClass(input) {
     input.readOnly = true;
 }
 
-function resetLetters() {
+function resetInputLetters() {
     blackLetters = [];
     yellowLetters = [];
     greenLetters = [];
-    possibleWords = [];
 }
 
 function resetVisualInputs() {
@@ -37,17 +36,31 @@ function resetVisualInputs() {
     }
 }
 
-function resetApp() {
-    const resultWords = document.querySelectorAll(".possible-words-box span");
-    const resultWordsBox = document.querySelector(".possible-words-box");
+function resetResultWords() {
+    const resultWordsElements = document.querySelectorAll(".possible-words-box span");
+    const resultWordsBoxElement = document.querySelector(".possible-words-box");
 
-    possibleWords = [];
-    resultWords.forEach((word) => {
-        resultWordsBox.removeChild(word);
+    resultWordsElements.forEach((word) => {
+        resultWordsBoxElement.removeChild(word);
     });
-    resetLetters();
-    resetVisualInputs();
 }
+
+function resetApp() {
+    resetInputLetters();
+    resetVisualInputs();
+    resetResultWords();
+}
+
+// App Logic
+
+let loadMoreBtnElement;
+const BATCH_SIZE = 16;
+let resultWordsIterator;
+const inputLettersValidators = {
+    black: createLettersValidator("black"),
+    yellow: createLettersValidator("yellow"),
+    green: createLettersValidator("green"),
+};
 
 function setLetterArrays() {
     blackInputElements.forEach((input) => {
@@ -61,60 +74,94 @@ function setLetterArrays() {
     });
 }
 
-// App Logic
-const BATCH_SIZE = 16;
+function* getResultWordsByBatch(allWords, batchSize, isValidWord) {
+    let possibleWords = [];
 
-function getResultWordsByBatch(allWords, batchSize, isValidWord) {
     for (const word of allWords) {
         if (!isValidWord(word)) continue;
 
         possibleWords.push(word);
 
         if (possibleWords.length >= batchSize) {
-            return possibleWords;
+            yield possibleWords;
+            possibleWords = [];
         }
+    }
+    if (possibleWords.length > 0) {
+        yield possibleWords;
     }
 }
 
-function getResult() {
-    const inputLettersValidators = {
-        black: createLettersValidator("black"),
-        yellow: createLettersValidator("yellow"),
-        green: createLettersValidator("green"),
-    };
-    inputLettersValidators["black"].getInputLetters(blackLetters);
-    inputLettersValidators["yellow"].getInputLetters(yellowLetters);
-    inputLettersValidators["green"].getInputLetters(greenLetters);
+function setLoadMoreBtn(resultWords) {
+    if (resultWords.length < 16 && loadMoreBtnElement) {
+        possibleWordsBoxElement.removeChild(loadMoreBtnElement);
+        loadMoreBtnElement = null;
+        return;
+    }
+    if (resultWords.length < 16) return;
 
-    const isValidWord = (word) => {
-        for (const validator in inputLettersValidators) {
-            if (!inputLettersValidators[validator].validateWord(word)) {
-                return false;
-            }
-        }
-        return true;
-    };
+    loadMoreBtnElement && possibleWordsBoxElement.removeChild(loadMoreBtnElement);
 
-    getResultWordsByBatch(TERMO_WORDS, BATCH_SIZE, isValidWord);
+    possibleWordsBoxElement.insertAdjacentHTML(
+        "beforeend",
+        '<ion-icon name="add-outline" class="load-more-btn"></ion-icon>'
+    );
+    loadMoreBtnElement = document.querySelector(".load-more-btn");
+    loadMoreBtnElement.addEventListener("click", () => {
+        loadMoreBtnClickHandler();
+    });
 }
 
-function setResultWordsScreen() {
-    const resultTitle = document.querySelector(".result-title");
-
-    possibleWords.forEach((matchedWord) => {
+function setResultWordsElements(resultWords) {
+    resultWords.forEach((matchedWord) => {
         const wordElement = document.createElement("span");
         wordElement.innerText = matchedWord;
         possibleWordsBoxElement.appendChild(wordElement);
     });
 
-    resultTitle.innerText = `${possibleWords.length.toString()} possible words`;
+    setLoadMoreBtn(resultWords);
+}
+
+function setResultWordsScreen(resultWords) {
+    const resultTitle = document.querySelector(".result-title");
+
+    resetResultWords();
+    setResultWordsElements(resultWords);
+    resultTitle.innerText =
+        resultWords.length < 16 ? `${resultWords.length.toString()} possible words` : "16+ possible words";
+
     resultModalElement.showModal();
+}
+
+function setupValidators() {
+    inputLettersValidators["black"].getInputLetters(blackLetters);
+    inputLettersValidators["yellow"].getInputLetters(yellowLetters);
+    inputLettersValidators["green"].getInputLetters(greenLetters);
+}
+
+function isValidWord(word) {
+    for (const validator in inputLettersValidators) {
+        if (!inputLettersValidators[validator].validateWord(word)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function getResult() {
+    setupValidators();
+
+    resultWordsIterator = getResultWordsByBatch(TERMO_WORDS, BATCH_SIZE, isValidWord);
+    const { value: resultWords } = resultWordsIterator.next();
+
+    setResultWordsScreen(resultWords);
+
+    console.log("Result Words:", resultWords);
 }
 
 function runAppLogic() {
     setLetterArrays();
     getResult();
-    setResultWordsScreen();
 }
 
 function enterBtnClickHandler() {
@@ -131,12 +178,25 @@ function enterBtnClickHandler() {
 }
 
 function closeBtnClickHandler() {
-    resetApp();
+    resetInputLetters();
     resultModalElement.close();
+}
+
+function loadMoreBtnClickHandler() {
+    console.log("loading more...");
+
+    const { value: resultWords, done } = resultWordsIterator.next();
+    !done && setResultWordsElements(resultWords);
+
+    console.log("New Words:", resultWords);
 }
 
 enterBtnElement.addEventListener("click", () => {
     enterBtnClickHandler();
+});
+
+resetBtnElement.addEventListener("click", () => {
+    resetApp();
 });
 
 closeBtnElement.addEventListener("click", () => {
