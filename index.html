@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,6 +20,8 @@
                 <ion-icon name="square-outline" class="change-screen-btn hide"></ion-icon>
                 <span>termo</span> <span>helper</span>
                 <ion-icon name="help-outline" class="help-btn"></ion-icon>
+                <p class="language-switch">PT</p>
+                <p class="language-switch hide">EN</p>
             </h1>
         </header>
 
@@ -30,7 +32,8 @@
                 <!-- Only forward arrow -->
                 <ion-icon name="chevron-forward-outline" class="arrow right-arrow"></ion-icon>
 
-                <h2 class="heading-secondary black-title"><span>black</span> letters</h2>
+                <h2 lang="pt" class="heading-secondary black-title">letras <span>pretas</span></h2>
+                <h2 lang="en" class="heading-secondary black-title hide"><span>black</span> letters</h2>
                 <div class="letters">
                     <input
                         type="text"
@@ -202,7 +205,8 @@
                     <ion-icon name="chevron-back-outline" class="arrow left-arrow"></ion-icon>
                     <ion-icon name="chevron-forward-outline" class="arrow right-arrow"></ion-icon>
 
-                    <h2 class="heading-secondary yellow-title"><span>yellow</span> letters</h2>
+                    <h2 lang="pt" class="heading-secondary yellow-title">letras <span>amarelas</span></h2>
+                    <h2 lang="en" class="heading-secondary yellow-title hide"><span>yellow</span> letters</h2>
                     <div class="letters">
                         <input
                             type="text"
@@ -252,7 +256,8 @@
                     <!-- Only back arrow -->
                     <ion-icon name="chevron-back-outline" class="arrow left-arrow"></ion-icon>
 
-                    <h2 class="heading-secondary green-title"><span>green</span> letters</h2>
+                    <h2 lang="pt" class="heading-secondary green-title">letras <span>verdes</span></h2>
+                    <h2 lang="en" class="heading-secondary green-title hide"><span>green</span> letters</h2>
                     <div class="letters">
                         <input
                             type="text"
@@ -310,7 +315,8 @@
         <!-- Help Modal -->
         <dialog class="help-modal">
             <div class="help-modal-container">
-                <p class="help-text help-text-1">Preencha as peças de acordo com seu progresso no jogo.</p>
+                <p lang="pt" class="help-text help-text-1">Preencha as peças de acordo com seu progresso no jogo.</p>
+                <p lang="en" class="help-text help-text-1 hide">Fill the inputs according to your game progress.</p>
                 <ul class="help-letter-list help-example-list">
                     <h3 class="heading-tertiary">termo</h3>
                     <li class="help-letter help-green-letter">t</li>
@@ -329,15 +335,20 @@
                     <li class="help-letter">c</li>
                     <li class="help-letter help-yellow-letter">a</li>
                 </ul>
-                <p class="help-text help-text-2">
+                <p lang="pt" class="help-text help-text-2">
                     Após colocar cada letra em sua respectiva cor, <br />
-                    aperte <span class="help-strong-word">ENTER</span> e você terá as possiveis respostas.
+                    aperte <span class="help-strong-word">ENTER</span> e você terá as possíveis respostas.
+                </p>
+                <p lang="en" class="help-text help-text-2 hide">
+                    After placing every letter into it respective colored input, <br />
+                    press <span class="help-strong-word">ENTER</span> and you will have the possible answers.
                 </p>
 
                 <div class="help-letters-sections">
                     <!-- Black Section -->
                     <div class="help-black-section">
-                        <h3 class="heading-tertiary"><span>black</span> letters</h3>
+                        <h3 lang="pt" class="heading-tertiary">letras <span>pretas</span></h3>
+                        <h3 lang="en" class="heading-tertiary hide"><span>black</span> letters</h3>
                         <ul class="help-letter-list help-black-list">
                             <li class="help-letter">e</li>
                             <li class="help-letter">r</li>
@@ -365,7 +376,8 @@
                     <div class="help-yellow-green-wrap">
                         <!-- Yellow Section -->
                         <div class="help-yellow-letters">
-                            <h3 class="heading-tertiary"><span>yellow</span> letters</h3>
+                            <h3 lang="pt" class="heading-tertiary">letras <span>amarelas</span></h3>
+                            <h3 lang="en" class="heading-tertiary hide"><span>yellow</span> letters</h3>
                             <ul class="help-letter-list">
                                 <li class="help-letter help-default-letter help-selected-letter"></li>
                                 <li class="help-letter help-default-letter"></li>
@@ -376,7 +388,8 @@
                         </div>
                         <!-- Green Section -->
                         <div class="help-green-letters">
-                            <h3 class="heading-tertiary"><span>green</span> letters</h3>
+                            <h3 lang="pt" class="heading-tertiary">letras <span>verdes</span></h3>
+                            <h3 lang="en" class="heading-tertiary hide"><span>green</span> letters</h3>
                             <ul class="help-letter-list">
                                 <li class="help-letter help-green-letter">t</li>
                                 <li class="help-letter help-green-letter">a</li>
@@ -388,7 +401,8 @@
                     </div>
 
                     <div class="help-result">
-                        <h3 class="heading-tertiary">6 possible words</h3>
+                        <h3 lang="pt" class="heading-tertiary">6 palavras possíveis</h3>
+                        <h3 lang="en" class="heading-tertiary hide">6 possible words</h3>
                         <ul class="help-result-words">
                             <span>tando</span>
                             <span>tango</span>
@@ -407,13 +421,16 @@
             <div class="result-modal-container">
                 <ion-icon name="close" class="close-btn"></ion-icon>
 
-                <h2 class="heading-secondary result-title"></h2>
+                <h2 lang="pt" class="heading-secondary result-title result-title-pt"></h2>
+                <h2 lang="en" class="heading-secondary result-title result-title-en hide"></h2>
                 <div class="possible-words-box"></div>
             </div>
         </dialog>
 
         <footer class="footer">
-            <ion-icon name="hammer-outline" class="footer-icon"></ion-icon><span>Developed by Breno Vassoler</span>
+            <ion-icon name="hammer-outline" class="footer-icon"></ion-icon
+            ><span lang="pt">Desenvolvido por Breno Vassoler</span
+            ><span lang="en" class="hide">Developed by Breno Vassoler</span>
         </footer>
     </body>
 </html>

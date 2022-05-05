@@ -2,6 +2,7 @@ import {
     changeScreenBtnElements,
     helpBtnElement,
     helpModalElement,
+    switchLanguageElements,
     mainSection,
     blackSectionElement,
     yellowSectionElement,
@@ -18,6 +19,14 @@ import {
 let actualSection = 0;
 
 // Handlers
+
+function changeVisualScreenMode() {
+    mainSection.classList.toggle("screen-mode-full");
+    changeScreenBtnElements.forEach((btn) => {
+        btn.classList.toggle("hide");
+    });
+}
+
 function screenButtonClickHandler() {
     changeVisualScreenMode();
 
@@ -26,6 +35,28 @@ function screenButtonClickHandler() {
         return;
     }
     sessionStorage.setItem("screenMode", "0");
+}
+
+function switchLanguage() {
+    document.body.querySelectorAll("[lang=pt]").forEach((portugueseText) => {
+        portugueseText.classList.toggle("hide");
+    });
+    document.body.querySelectorAll("[lang=en]").forEach((portugueseText) => {
+        portugueseText.classList.toggle("hide");
+    });
+    switchLanguageElements.forEach((switchLanguage) => {
+        switchLanguage.classList.toggle("hide");
+    });
+}
+
+function languageSwitchClickHandler() {
+    switchLanguage();
+
+    if (sessionStorage.getItem("language") === "0") {
+        sessionStorage.setItem("language", "1");
+        return;
+    }
+    sessionStorage.setItem("language", "0");
 }
 
 function inputFocusHandler(input) {
@@ -149,13 +180,6 @@ function arrowClickHandler(arrowSide) {
     }
 }
 
-function changeVisualScreenMode() {
-    mainSection.classList.toggle("screen-mode-full");
-    changeScreenBtnElements.forEach((btn) => {
-        btn.classList.toggle("hide");
-    });
-}
-
 function setScreenMode() {
     if (sessionStorage.getItem("screenMode") === "1") {
         changeVisualScreenMode();
@@ -165,12 +189,28 @@ function setScreenMode() {
     sessionStorage.setItem("screenMode", "0");
 }
 
+function setLanguage() {
+    if (sessionStorage.getItem("language") === "1") {
+        switchLanguage();
+        return;
+    }
+
+    sessionStorage.setItem("language", "0");
+}
+
 setScreenMode(); // Set screen mode based on session storage data
+setLanguage(); // Set language based on session storage data
 
 // Listeners
 changeScreenBtnElements.forEach((button) => {
     button.addEventListener("click", () => {
         screenButtonClickHandler();
+    });
+});
+
+switchLanguageElements.forEach((languageSwitch) => {
+    languageSwitch.addEventListener("click", () => {
+        languageSwitchClickHandler();
     });
 });
 

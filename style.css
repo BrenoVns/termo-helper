@@ -149,6 +149,10 @@
         align-self: center;
     }
 
+    .result-modal .result-title {
+        font-size: 3.8rem;
+    }
+
     .result-modal .possible-words-box {
         width: 50rem;
     }
@@ -156,12 +160,22 @@
 
 @media (max-width: 768px) {
     .main-header .change-screen-btn,
-    .main-header .help-btn {
+    .main-header .help-btn,
+    .main-header .language-switch {
         top: 110%;
     }
 
+    .main-header .change-screen-btn {
+        left: 36%;
+        transform: translate(-50%, -10%);
+    }
+
+    .main-header .change-screen-btn:hover {
+        transform: translate(-50%, -18%);
+    }
+
     .main-header .help-btn {
-        right: 42%;
+        right: 50%;
         transform: translateX(50%);
     }
 
@@ -169,13 +183,13 @@
         transform: translate(50%, -8%);
     }
 
-    .main-header .change-screen-btn {
-        left: 42%;
-        transform: translate(-50%, -10%);
+    .main-header .language-switch {
+        right: 36%;
+        transform: translate(50%, -10%);
     }
 
-    .main-header .change-screen-btn:hover {
-        transform: translate(-50%, -18%);
+    .main-header .language-switch:hover {
+        transform: translate(50%, -18%);
     }
 
     .help-modal .help-modal-container {
@@ -285,7 +299,7 @@
     }
 
     .result-modal .result-title {
-        font-size: 3.8rem;
+        font-size: 3.2rem;
         margin: 2.2rem 0 4rem 0;
     }
 
@@ -440,7 +454,7 @@
 
     .result-modal .result-title {
         margin: 2rem 0 4rem 0;
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 
     .result-modal .possible-words-box {
@@ -609,8 +623,8 @@ body {
 }
 
 .change-screen-btn,
-.help-btn {
-    font-size: 2rem;
+.help-btn,
+.language-switch {
     color: var(--grey-color);
     border-radius: 8px;
     padding: 4px;
@@ -621,8 +635,16 @@ body {
     transition: all 300ms ease;
 }
 
+.language-switch {
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+    right: -36%;
+    text-align: center;
+}
+
 .change-screen-btn:hover,
-.help-btn:hover {
+.help-btn:hover,
+.language-switch:hover {
     color: var(--white-color);
     transform: translateY(-56%);
 }
@@ -633,6 +655,7 @@ body {
 }
 
 .help-btn {
+    font-size: 2rem;
     border: 2px solid var(--grey-color);
     right: -20%;
 }
@@ -1006,7 +1029,7 @@ body {
 }
 
 .result-title {
-    font-size: 4.4rem;
+    font-size: 4.2rem;
     margin-bottom: 5rem;
     word-spacing: 0.4rem;
 }

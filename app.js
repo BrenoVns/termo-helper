@@ -123,11 +123,14 @@ function setResultWordsElements(resultWords) {
 }
 
 function setResultWordsScreen(resultWords) {
-    const resultTitle = document.querySelector(".result-title");
+    const portugueseResultTitle = document.querySelector(".result-title-pt");
+    const englishResultTitle = document.querySelector(".result-title-en");
 
     resetResultWords();
     setResultWordsElements(resultWords);
-    resultTitle.innerText =
+    portugueseResultTitle.innerText =
+        resultWords.length < 16 ? `${resultWords.length.toString()} possíveis palavras` : "16+ possíveis palavras";
+    englishResultTitle.innerText =
         resultWords.length < 16 ? `${resultWords.length.toString()} possible words` : "16+ possible words";
 
     resultModalElement.showModal();

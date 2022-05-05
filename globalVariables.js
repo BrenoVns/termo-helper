@@ -2,6 +2,7 @@
 export const changeScreenBtnElements = document.querySelectorAll(".change-screen-btn");
 export const helpBtnElement = document.querySelector(".help-btn");
 export const helpModalElement = document.querySelector(".help-modal");
+export const switchLanguageElements = document.querySelectorAll(".language-switch");
 export const mainSection = document.querySelector(".main-section");
 export const blackSectionElement = document.querySelector(".black-section");
 export const yellowSectionElement = document.querySelector(".yellow-section");
