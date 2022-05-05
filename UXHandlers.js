@@ -188,8 +188,9 @@ letterInputElements.forEach((input) => {
     });
 
     input.addEventListener("keydown", (event) => {
-        console.log(event);
-        event.key === "Backspace" && moveInputFocusBackwards(input);
+        if (event.key === "Backspace" && input.previousElementSibling) {
+            moveInputFocusBackwards(input);
+        }
     });
 });
 
