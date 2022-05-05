@@ -177,8 +177,7 @@ function enterBtnClickHandler() {
     isValid && runAppLogic();
 }
 
-function closeBtnClickHandler() {
-    resetInputLetters();
+function closeModalHandler() {
     resultModalElement.close();
 }
 
@@ -199,6 +198,14 @@ resetBtnElement.addEventListener("click", () => {
     resetApp();
 });
 
+resultModalElement.addEventListener("close", () => {
+    resetInputLetters();
+});
+
 closeBtnElement.addEventListener("click", () => {
-    closeBtnClickHandler();
+    closeModalHandler();
+});
+
+resultModalElement.addEventListener("click", (ev) => {
+    ev.target === resultModalElement && closeModalHandler();
 });

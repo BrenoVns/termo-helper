@@ -1,5 +1,7 @@
 import {
     changeScreenBtnElements,
+    helpBtnElement,
+    helpModalElement,
     mainSection,
     blackSectionElement,
     yellowSectionElement,
@@ -136,7 +138,6 @@ function changeVisualScreenMode() {
     changeScreenBtnElements.forEach((btn) => {
         btn.classList.toggle("hide");
     });
-    enterBtnElement.classList.remove("hide");
 }
 
 function setScreenMode() {
@@ -155,6 +156,14 @@ changeScreenBtnElements.forEach((button) => {
     button.addEventListener("click", () => {
         screenButtonClickHandler();
     });
+});
+
+helpBtnElement.addEventListener("click", () => {
+    helpModalElement.showModal();
+});
+
+helpModalElement.addEventListener("click", (ev) => {
+    ev.target === helpModalElement && helpModalElement.close();
 });
 
 letterInputElements.forEach((input) => {
