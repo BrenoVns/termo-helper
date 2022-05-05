@@ -45,24 +45,40 @@ function inputFocusHandler(input) {
     previousInput = input;
 }
 
-function inputChangeHandler(input, event) {
+function moveInputFocusBackwards(input) {
     const inputClasslist = input.classList;
+    const previousInput = input.previousElementSibling;
 
-    if (event.inputType === "deleteContentBackward") {
-        inputClasslist.remove("filled-input");
-        inputClasslist.add("blocked-input");
-        input.readOnly = true;
+    inputClasslist.remove("filled-input");
+    inputClasslist.add("blocked-input");
+    input.readOnly = true;
 
-        if (!input.previousElementSibling) {
-            return;
-        }
-
-        input.previousElementSibling.readOnly = false;
-        input.previousElementSibling.focus();
+    if (!previousInput) {
         return;
     }
-    if (!inputClasslist.contains("filled-input") && /^[A-Za-z\s]*$/.test(event.value) === true) {
-        inputClasslist.add("filled-input");
+
+    if (input.value) {
+        input.value = null;
+        previousInput.readOnly = false;
+        previousInput.classList.remove("blocked-input");
+        previousInput.focus();
+        return;
+    }
+    previousInput.readOnly = false;
+    previousInput.classList.remove("filled-input");
+    previousInput.classList.remove("blocked-input");
+    previousInput.focus();
+    previousInput.value = null;
+
+    return;
+}
+
+function inputChangeHandler(input, event) {
+    if (event.inputType === "deleteContentBackward") {
+        moveInputFocusBackwards(input);
+    }
+    if (!input.classList.contains("filled-input") && /^[A-Za-z\s]*$/.test(event.value) === true) {
+        input.classList.add("filled-input");
         input.readOnly = true;
 
         if (!input.nextElementSibling) {
@@ -169,6 +185,11 @@ helpModalElement.addEventListener("click", (ev) => {
 letterInputElements.forEach((input) => {
     input.addEventListener("focus", () => {
         inputFocusHandler(input);
+    });
+
+    input.addEventListener("keydown", (event) => {
+        console.log(event);
+        event.key === "Backspace" && moveInputFocusBackwards(input);
     });
 });
 
