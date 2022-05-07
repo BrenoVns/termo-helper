@@ -10,9 +10,6 @@ import {
     rightArrowElements,
     leftArrowElements,
     letterInputElements,
-    blackInputElements,
-    yellowInputElements,
-    greenInputElements,
     enterBtnElement,
 } from "./globalVariables.js";
 
@@ -59,91 +56,55 @@ function languageSwitchClickHandler() {
     sessionStorage.setItem("language", "0");
 }
 
-function inputFocusHandler(input) {
-    let previousInput;
-
-    if (input.classList.contains("editing-input")) {
-        return;
-    }
-    input.classList.toggle("editing-input");
-
-    if (!previousInput) {
-        previousInput = input;
+function inputTextHandler(actualInput, event) {
+    actualInput.textContent = event.key;
+    if (!actualInput.nextElementSibling) {
+        actualInput.classList.add("filled-input");
         return;
     }
 
-    previousInput.classList.toggle("editing-input");
-    previousInput = input;
-}
+    // Jump to next empty input
+    const parentInputElement = actualInput.parentElement;
+    const sectionInputElements = parentInputElement.querySelectorAll(".letter-input");
 
-function moveInputFocusBackwards(input) {
-    const inputClasslist = input.classList;
-    const previousInput = input.previousElementSibling;
-
-    inputClasslist.remove("filled-input");
-    inputClasslist.add("blocked-input");
-    input.readOnly = true;
-
-    if (!previousInput) {
-        return;
-    }
-
-    if (input.value) {
-        input.value = null;
-        previousInput.readOnly = false;
-        previousInput.classList.remove("blocked-input");
-        previousInput.focus();
-        return;
-    }
-    previousInput.readOnly = false;
-    previousInput.classList.remove("filled-input");
-    previousInput.classList.remove("blocked-input");
-    previousInput.focus();
-    previousInput.value = null;
-
-    return;
-}
-
-function inputChangeHandler(input, event) {
-    if (event.inputType === "deleteContentBackward") {
-        moveInputFocusBackwards(input);
-    }
-    if (!input.classList.contains("filled-input") && /^[A-Za-z\s]*$/.test(event.value) === true) {
-        input.classList.add("filled-input");
-        input.readOnly = true;
-
-        if (!input.nextElementSibling) {
-            input.blur();
-            return;
+    let actualIndex;
+    sectionInputElements.forEach((input, index) => {
+        if (actualInput === input) {
+            actualIndex = index;
         }
-        input.nextElementSibling.classList.remove("blocked-input");
-        input.nextElementSibling.focus();
-        input.nextElementSibling.readOnly = false;
+    });
+
+    for (let inputIndex = actualIndex; inputIndex < sectionInputElements.length; inputIndex++) {
+        const sectionInput = sectionInputElements[inputIndex];
+        if (sectionInput.textContent === "") {
+            sectionInput.focus();
+            break;
+        }
+    }
+
+    actualInput.classList.add("filled-input");
+}
+
+function inputBackspaceHandler(input) {
+    // IF INPUT HAS VALUE
+    if (input.textContent) {
+        input.textContent = "";
+        input.classList.remove("filled-input");
+        return;
+    }
+    // IF INPUT HASN'T VALUE
+    //// IF HAS PREVIOUS INPUT
+    if (input.previousElementSibling) {
+        input.previousElementSibling.classList.remove("filled-input");
+        input.previousElementSibling.textContent = "";
+        input.previousElementSibling.focus();
     }
 }
 
-function inputClickHandler(input, inputColorElements) {
-    if (input.readOnly === true) {
-        for (const input_ of inputColorElements) {
-            if (input_.readOnly === false && !input_.classList.contains("filled-input")) {
-                input_.classList.add("blocked-input");
-                input_.readOnly = true;
-                break;
-            }
-        }
-        input.classList.remove("blocked-input");
-        input.readOnly = false;
-    }
+function inputKeyUpHandler(input, event) {
+    /^[a-zA-Z]{1}$/.test(event.key) && inputTextHandler(input, event);
 
-    if (input.classList.contains("filled-input")) {
-        for (const input_ of inputColorElements) {
-            if (input_.readOnly === false && !input_.classList.contains("filled-input")) {
-                input_.classList.add("blocked-input");
-                input_.readOnly = true;
-                break;
-            }
-        }
-    }
+    event.key === "Backspace" && inputBackspaceHandler(input);
 }
 
 function arrowClickHandler(arrowSide) {
@@ -223,44 +184,8 @@ helpModalElement.addEventListener("click", (ev) => {
 });
 
 letterInputElements.forEach((input) => {
-    input.addEventListener("focus", () => {
-        inputFocusHandler(input);
-    });
-
-    input.addEventListener("keydown", (event) => {
-        if (event.key === "Backspace" && input.previousElementSibling) {
-            moveInputFocusBackwards(input);
-        }
-    });
-});
-
-blackInputElements.forEach((input) => {
-    input.addEventListener("input", (event) => {
-        inputChangeHandler(input, event);
-    });
-
-    input.addEventListener("click", () => {
-        inputClickHandler(input, blackInputElements);
-    });
-});
-
-yellowInputElements.forEach((input) => {
-    input.addEventListener("input", (event) => {
-        inputChangeHandler(input, event);
-    });
-
-    input.addEventListener("click", () => {
-        inputClickHandler(input, yellowInputElements);
-    });
-});
-
-greenInputElements.forEach((input) => {
-    input.addEventListener("input", (event) => {
-        inputChangeHandler(input, event);
-    });
-
-    input.addEventListener("click", () => {
-        inputClickHandler(input, greenInputElements);
+    input.addEventListener("keyup", (event) => {
+        inputKeyUpHandler(input, event);
     });
 });
 

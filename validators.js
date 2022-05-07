@@ -1,7 +1,7 @@
 export function createLettersValidator(inputColor) {
     const validatorName = `${inputColor} validator inputs`;
 
-    const validator = { name: validatorName };
+    const validator = { name: validatorName, getInputLetters: null, validateWord: null, getLettersCount: null };
 
     inputColor === "black" && setBlackValidator(validator);
     inputColor === "yellow" && setYellowValidator(validator);

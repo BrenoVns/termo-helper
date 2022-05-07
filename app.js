@@ -17,10 +17,6 @@ let yellowLetters = [];
 let greenLetters = [];
 
 // Reset logic
-function setBlockedClass(input) {
-    input.classList.add("blocked-input");
-    input.readOnly = true;
-}
 
 function resetInputLetters() {
     blackLetters = [];
@@ -30,9 +26,8 @@ function resetInputLetters() {
 
 function resetVisualInputs() {
     for (const input of letterInputElements) {
-        input.value = null;
+        input.textContent = "";
         input.classList.remove("filled-input");
-        setBlockedClass(input);
     }
 }
 
@@ -64,13 +59,13 @@ const inputLettersValidators = {
 
 function setLetterArrays() {
     blackInputElements.forEach((input) => {
-        input.value && blackLetters.push(input.value.toLowerCase());
+        input.textContent && blackLetters.push(input.textContent.toLowerCase());
     });
     yellowInputElements.forEach((input) => {
-        yellowLetters.push(input.value.toLowerCase());
+        yellowLetters.push(input.textContent.toLowerCase());
     });
     greenInputElements.forEach((input) => {
-        greenLetters.push(input.value.toLowerCase());
+        greenLetters.push(input.textContent.toLowerCase());
     });
 }
 
@@ -148,6 +143,7 @@ function isValidWord(word) {
             return false;
         }
     }
+
     return true;
 }
 
@@ -171,7 +167,7 @@ function enterBtnClickHandler() {
     let isValid = false;
 
     for (const input of letterInputElements) {
-        if (input.value) {
+        if (input.textContent) {
             isValid = true;
             break;
         }

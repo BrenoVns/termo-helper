@@ -88,7 +88,7 @@
 
     .help-modal .help-modal-container::before {
         content: "";
-        height: 90%;
+        height: 74vh;
         position: absolute;
         left: 59.4%;
         padding: 0 0.18rem;
@@ -97,7 +97,7 @@
     }
 
     .help-modal-container .help-text {
-        font-size: 2.2rem;
+        font-size: clamp(1rem, 3vh, 2.2rem);
     }
 
     .help-text-1 {
@@ -106,19 +106,19 @@
     }
 
     .help-modal-container .help-letters-sections .heading-tertiary {
-        font-size: 2.4rem;
-        margin-bottom: 1.6rem;
+        font-size: clamp(1rem, 3.2vh, 2.6rem);
+        margin-bottom: clamp(1rem, 2.18vh, 1rem);
     }
 
     .help-modal-container .help-letter-list {
-        row-gap: 0.44rem;
-        column-gap: 0.44rem;
+        row-gap: 0.6vh;
+        column-gap: 0.6vh;
     }
 
     .help-modal-container .help-letter {
-        font-size: 2.8rem;
-        height: 4.8rem;
-        width: 4.8rem;
+        font-size: 3.8vh;
+        height: clamp(1rem, 6.53vh, 5.8rem);
+        width: clamp(1rem, 6.53vh, 5.8rem);
     }
 
     .help-modal-container .help-example-list {
@@ -138,11 +138,12 @@
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
         height: 100%;
-        row-gap: 2.4rem;
+        row-gap: 3.2vh;
+        overflow-y: scroll;
     }
 
     .help-modal-container .help-yellow-green-wrap {
-        gap: 2.4rem;
+        gap: 3.26vh;
     }
 
     .help-modal-container .help-result {
@@ -150,7 +151,7 @@
     }
 
     .result-modal .result-title {
-        font-size: 3.8rem;
+        font-size: 5.17vh;
     }
 
     .result-modal .possible-words-box {
@@ -199,30 +200,30 @@
     }
 
     .help-modal .help-letter-list {
-        row-gap: 0.3rem;
-        column-gap: 0.3rem;
+        row-gap: 0.36vh;
+        column-gap: 0.36vh;
     }
 
     .help-modal .help-letter {
-        font-size: 2rem;
-        height: 3.8rem;
-        width: 3.8rem;
+        font-size: 2.4vh;
+        height: 4.56vh;
+        width: 4.56vh;
     }
 
     .help-modal .help-letters-sections .heading-tertiary {
-        font-size: 2rem;
+        font-size: 2.4vh;
     }
 
     .help-modal .help-default-letter {
-        border: 0.3rem solid var(--medium-brown-color);
+        border: 0.36vh solid var(--medium-brown-color);
     }
 
     .help-modal .help-selected-letter {
-        border-bottom: 0.6rem solid var(--medium-brown-color);
+        border-bottom: 0.72vh solid var(--medium-brown-color);
     }
 
     .help-modal .help-text {
-        font-size: 1.4rem;
+        font-size: 1.68vh;
         word-spacing: 1.8px;
         line-height: normal;
     }
@@ -246,10 +247,10 @@
     }
 
     .help-modal .help-strong-word {
-        font-size: 1.3rem;
-        border-width: 0.2rem;
-        height: 3rem;
-        width: 6rem;
+        font-size: 1.56vh;
+        border-width: 0.24vh;
+        height: 3.6vh;
+        width: 7.2vh;
     }
 
     .help-modal .help-letters-sections {
@@ -258,6 +259,7 @@
         grid-template-rows: repeat(2, 1fr);
         grid-template-columns: repeat(2, 1fr);
         row-gap: 0;
+        overflow-y: visible;
     }
 
     .help-modal .help-result {
@@ -265,9 +267,9 @@
     }
 
     .help-modal .help-result-words span {
-        font-size: 1.6rem;
-        height: 3.2rem;
-        width: 6.6rem;
+        font-size: 1.92vh;
+        height: 3.84vh;
+        width: 7.92vh;
     }
 
     .main-section .arrow {
@@ -422,7 +424,7 @@
         font-size: 3.4rem;
     }
 
-    .main-section .editing-input {
+    .main-section .letter-input:focus {
         border-bottom: 1rem solid var(--dark-brown-color);
     }
 
@@ -527,17 +529,14 @@ body {
 }
 
 .heading-secondary {
-    font-size: 3.6rem;
-    margin-bottom: 2.6rem;
+    font-size: clamp(1rem, 4.4vh, 3.7rem);
+    margin-bottom: clamp(1rem, 3vh, 2.6rem);
 }
 
 .hide {
     display: none;
 }
 
-.blocked-input {
-    background-color: var(--dark-brown-color) !important;
-}
 /* Global
 ------------------------------------- */
 /* Screen Mode Full
@@ -545,7 +544,7 @@ body {
 
 .screen-mode-full.main-section {
     gap: 6%;
-    margin-top: 22rem;
+    margin-top: 20rem;
 }
 
 .screen-mode-full .main-header {
@@ -574,9 +573,10 @@ body {
     width: 7.6rem;
     font-size: 4.2rem;
     border: 0.64rem solid var(--dark-brown-color);
+    border-radius: clamp(1rem, 1.2vh, 2rem);
 }
 
-.screen-mode-full .editing-input {
+.screen-mode-full .letter-input:focus {
     border-bottom: 1.28rem solid var(--dark-brown-color);
 }
 
@@ -593,7 +593,7 @@ body {
 
 .screen-mode-full .reset-btn {
     bottom: -80%;
-    left: -3.4%;
+    left: 4%;
     transform: translateX(50%);
 }
 
@@ -687,15 +687,13 @@ body {
     justify-content: space-evenly;
     align-items: center;
     height: 80vh;
-    /* padding: 0 4.6rem; */
 }
 
 .help-text {
-    font-size: 2.5rem;
+    font-size: clamp(1rem, 2.8vh, 2.4rem);
     font-weight: 400;
     word-spacing: 2px;
     color: var(--grey-color);
-    /* margin: 4.2rem 0; */
     line-height: 1.4;
 }
 
@@ -705,14 +703,14 @@ body {
     justify-content: center;
     align-items: center;
     color: var(--white-color);
-    border: var(--medium-brown-color) solid 0.3rem;
+    border: 0.35vh solid var(--medium-brown-color);
     border-radius: 0.6rem;
-    height: 4.2rem;
-    width: 9.6rem;
+    height: clamp(1rem, 5vh, 4.5rem);
+    width: clamp(1rem, 11.4vh, 9.8rem);
 }
 
 .help-example-list .heading-tertiary {
-    font-size: 2.4rem;
+    font-size: clamp(1rem, 2.8vh, 2.4rem);
     grid-column: 1 / span 5;
     align-self: center;
 }
@@ -721,31 +719,31 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: min-content;
-    row-gap: 0.5rem;
-    column-gap: 0.5rem;
+    row-gap: clamp(0.1rem, 0.54vh, 0.4rem);
+    column-gap: clamp(0.1rem, 0.54vh, 0.4rem);
 }
 
 .help-letter {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: clamp(1rem, 3.4vh, 2.8rem);
     text-transform: uppercase;
     font-weight: 600;
     color: var(--white-color);
     background-color: var(--black-color);
-    height: 5rem;
-    width: 5rem;
-    border-radius: 0.6rem;
+    height: clamp(1rem, 5.8vh, 5rem);
+    aspect-ratio: 1;
+    border-radius: 0.8vh;
 }
 
 .help-default-letter {
     background-color: transparent;
-    border: 0.4rem solid var(--medium-brown-color);
+    border: 0.5vh solid var(--medium-brown-color);
 }
 
 .help-selected-letter {
-    border-bottom: 0.8rem solid var(--medium-brown-color);
+    border-bottom: 1vh solid var(--medium-brown-color);
 }
 
 .help-green-letter,
@@ -770,8 +768,8 @@ body {
 }
 
 .help-letters-sections .heading-tertiary {
-    font-size: 2.6rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1rem, 3.1vh, 2.5rem);
+    margin-bottom: clamp(1rem, 2.2vh, 1.8rem);
 }
 
 .help-black-section .heading-tertiary span {
@@ -794,26 +792,26 @@ body {
 }
 
 .help-result {
-    max-width: 30rem;
+    width: clamp(5rem, 34vh, 32rem);
 }
 
 .help-result-words {
     display: flex;
     justify-content: center;
     width: 100%;
-    gap: 0.7rem;
+    gap: 0.76vh;
     flex-wrap: wrap;
 }
 
 .help-result-words span {
-    font-size: 1.8rem;
+    font-size: 2vh;
     font-weight: 600;
     text-transform: uppercase;
     color: var(--white-color);
     background-color: var(--yellow-color);
-    height: 3.4rem;
-    width: 6.8rem;
-    border-radius: 0.6rem;
+    height: 3.74vh;
+    width: 7.54vh;
+    border-radius: 0.67vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -827,14 +825,14 @@ body {
 ------------------------------------- */
 
 .main-section {
-    margin-top: 32vh;
+    margin-top: 24vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .arrow {
-    font-size: 4.2rem;
+    font-size: clamp(1rem, 5vh, 4rem);
     color: var(--white-color);
     position: absolute;
     cursor: pointer;
@@ -866,26 +864,28 @@ body {
 .letters {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    row-gap: 0.6rem;
-    column-gap: 0.6rem;
+    row-gap: clamp(0.2rem, 0.4vh, 1rem);
+    column-gap: clamp(0.2rem, 0.4vh, 1rem);
 }
 
 .letter-input {
-    height: 8.4rem;
-    width: 8.4rem;
+    height: clamp(1rem, 10vh, 8.4rem);
+    width: clamp(1rem, 10vh, 8.4rem);
     background-color: var(--light-brown-color);
-    border: 0.68rem solid var(--dark-brown-color);
-    border-radius: 1rem;
-    font-size: 4.6rem;
+    border: clamp(0.4rem, 0.9vh, 0.68rem) solid var(--dark-brown-color);
+    border-radius: clamp(0.5rem, 1.6vh, 1.4rem);
+    font-size: clamp(1rem, 6vh, 5.2rem);
     color: var(--white-color);
     font-weight: 700;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 140ms ease;
 }
 
-.editing-input {
+.letter-input:focus {
     border-bottom: 1.2rem solid var(--dark-brown-color);
 }
 
@@ -896,11 +896,11 @@ body {
 }
 
 .enter-btn {
-    border: 0.48rem solid var(--dark-brown-color);
-    border-radius: 1.2rem;
+    border: 0.6vh solid var(--dark-brown-color);
+    border-radius: 1.41vh;
     background-color: var(--dark-brown-color);
-    padding: 1.2rem 3.4rem;
-    font-size: 2.2rem;
+    padding: 1.4vh 4vh;
+    font-size: 2.6vh;
     font-weight: 700;
     color: var(--white-color);
     text-transform: uppercase;
@@ -924,14 +924,14 @@ body {
 }
 
 .reset-btn {
-    font-size: 3rem;
-    padding: 1.1rem;
-    border: 0.48rem solid var(--dark-brown-color);
-    border-radius: 1.2rem;
+    font-size: 3.54vh;
+    padding: 1.275vh;
+    border: 0.6vh solid var(--dark-brown-color);
+    border-radius: 1.41vh;
     background-color: var(--dark-brown-color);
     color: var(--white-color);
     position: absolute;
-    left: 74%;
+    left: 78%;
     bottom: -70.4%;
     cursor: pointer;
     transform: translateX(-50%);
@@ -1029,14 +1029,14 @@ body {
 }
 
 .result-title {
-    font-size: 4.2rem;
+    font-size: clamp(2.4rem, 5vh, 4.2rem);
     margin-bottom: 5rem;
     word-spacing: 0.4rem;
 }
 
 .possible-words-box {
     display: flex;
-    width: clamp(40rem, 50vw, 44rem);
+    width: clamp(38rem, 62vh, 44rem);
     height: 34vh;
     gap: 0.8rem;
     justify-content: center;
@@ -1053,14 +1053,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.4rem;
+    font-size: clamp(1.8rem, 2.8vh, 2.4rem);
     font-weight: 600;
     text-transform: uppercase;
     color: var(--white-color);
     background-color: var(--yellow-color);
     border-radius: 1rem;
-    width: 10.2rem;
-    height: 5.6rem;
+    width: clamp(7rem, 12vh, 10.2rem);
+    height: clamp(3.8rem, 6.7vh, 5.6rem);
     transition: all 180ms ease;
 }
 
