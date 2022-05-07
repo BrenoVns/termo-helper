@@ -21,3 +21,7 @@ The landing page have 3 screens:
 - ### A Green Letters Screen
 
 ![Green Letters Screen](img/green-letters.png)
+
+You have to fill the inputs with the respective colored letter, and press "enter" button to get all the possible words, e.g:
+
+![Usage Example](img/usage-example.png)
