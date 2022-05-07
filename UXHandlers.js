@@ -11,9 +11,12 @@ import {
     leftArrowElements,
     letterInputElements,
     enterBtnElement,
+    mobileKeysElements,
 } from "./globalVariables.js";
+import { enterBtnClickHandler } from "./app.js";
 
 let actualSection = 0;
+let selectedInput;
 
 // Handlers
 
@@ -56,10 +59,12 @@ function languageSwitchClickHandler() {
     sessionStorage.setItem("language", "0");
 }
 
-function inputTextHandler(actualInput, event) {
-    actualInput.textContent = event.key;
+function inputTextHandler(actualInput, event, mobileKey) {
+    actualInput.textContent = event.key || mobileKey;
     if (!actualInput.nextElementSibling) {
         actualInput.classList.add("filled-input");
+
+        selectedInput = actualInput;
         return;
     }
 
@@ -78,6 +83,8 @@ function inputTextHandler(actualInput, event) {
         const sectionInput = sectionInputElements[inputIndex];
         if (sectionInput.textContent === "") {
             sectionInput.focus();
+
+            selectedInput = sectionInput;
             break;
         }
     }
@@ -94,10 +101,14 @@ function inputBackspaceHandler(input) {
     }
     // IF INPUT HASN'T VALUE
     //// IF HAS PREVIOUS INPUT
-    if (input.previousElementSibling) {
-        input.previousElementSibling.classList.remove("filled-input");
-        input.previousElementSibling.textContent = "";
-        input.previousElementSibling.focus();
+    const previousInput = input.previousElementSibling;
+
+    if (previousInput) {
+        previousInput.classList.remove("filled-input");
+        previousInput.textContent = "";
+        previousInput.focus();
+
+        selectedInput = previousInput;
     }
 }
 
@@ -139,6 +150,14 @@ function arrowClickHandler(arrowSide) {
             return;
         }
     }
+}
+
+function mobileKeyClickHandler(key) {
+    key.textContent.length === 1 && inputTextHandler(selectedInput, "", key.textContent);
+
+    key.textContent === "enter" && enterBtnClickHandler();
+
+    key.id === "backspace-key" && inputBackspaceHandler(selectedInput);
 }
 
 function setScreenMode() {
@@ -187,6 +206,10 @@ letterInputElements.forEach((input) => {
     input.addEventListener("keyup", (event) => {
         inputKeyUpHandler(input, event);
     });
+
+    input.addEventListener("click", () => {
+        selectedInput = input;
+    });
 });
 
 rightArrowElements.forEach((arrow) => {
@@ -198,5 +221,11 @@ rightArrowElements.forEach((arrow) => {
 leftArrowElements.forEach((arrow) => {
     arrow.addEventListener("click", () => {
         arrowClickHandler("left");
+    });
+});
+
+mobileKeysElements.forEach((key) => {
+    key.addEventListener("click", () => {
+        mobileKeyClickHandler(key);
     });
 });

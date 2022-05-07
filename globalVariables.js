@@ -15,6 +15,7 @@ export const yellowInputElements = document.querySelectorAll(".yellow-input");
 export const greenInputElements = document.querySelectorAll(".green-input");
 export const enterBtnElement = document.querySelector(".enter-btn");
 export const resetBtnElement = document.querySelector(".reset-btn");
+export const mobileKeysElements = document.querySelectorAll(".mobile-key");
 export const possibleWordsBoxElement = document.querySelector(".possible-words-box");
 export const resultModalElement = document.querySelector(".result-modal");
 export const loadMoreBtnElement = document.querySelector(".load-more-btn");

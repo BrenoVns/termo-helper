@@ -163,7 +163,7 @@ function runAppLogic() {
     getResult();
 }
 
-function enterBtnClickHandler() {
+export function enterBtnClickHandler() {
     let isValid = false;
 
     for (const input of letterInputElements) {
