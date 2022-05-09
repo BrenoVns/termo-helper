@@ -117,7 +117,6 @@
         grid-template-rows: repeat(3, 1fr);
         height: 100%;
         row-gap: 3.2vh;
-        /* overflow-y: scroll; */
     }
 
     .help-modal-container .help-yellow-green-wrap {
@@ -318,12 +317,19 @@
     }
 
     .main-header .heading-primary {
-        font-size: 4.2rem;
+        font-size: calc(3vh + 4vw);
     }
 
-    .main-header .change-screen-btn,
     .main-header .help-btn {
         top: 110%;
+        font-size: 2vh;
+        border: 0.28vh solid var(--grey-color);
+        border-radius: 1vh;
+        padding: 0.4vh;
+    }
+
+    .main-header .language-switch {
+        font-size: 2.6vh;
     }
 
     .main-header .change-screen-btn {
@@ -391,11 +397,12 @@
     }
 
     body .main-section {
-        margin-top: clamp(10rem, 12vh, 24vh);
+        margin-top: clamp(6rem, 18vh, 30rem);
+        flex-direction: column;
     }
 
     .main-section .heading-secondary {
-        font-size: 3rem;
+        font-size: calc(2vh + 2.66vw);
     }
 
     .main-section .letters {
@@ -404,11 +411,11 @@
     }
 
     .main-section .letter-input {
-        height: 6rem;
-        width: 6rem;
-        border: 0.5rem solid var(--dark-brown-color);
-        font-size: 3.4rem;
-        border-radius: 1rem;
+        height: 6.4vh;
+        width: 6.4vh;
+        border: 0.55vh solid var(--dark-brown-color);
+        font-size: 3.5vh;
+        border-radius: 1vh;
     }
 
     .main-section .letter-input:focus {
@@ -416,36 +423,47 @@
     }
 
     body .main-section .arrow {
-        top: 110%;
+        top: 14.5vh;
+    }
+
+    main.main-section .black-section .arrow {
+        top: 35vh;
     }
 
     .main-section .enter-btn {
-        font-size: 1.8rem;
-        bottom: -76%;
-        padding: 0.8rem 2.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-section .enter-btn {
+        font-size: 1.7vh;
+        bottom: -6.2vh;
+        height: 4.8vh;
+        width: 10vh;
         border: 0.48rem solid var(--dark-brown-color);
     }
 
     .main-section .reset-btn {
-        font-size: 2.8rem;
-        padding: 0.55rem;
-        left: 77%;
-        bottom: -76.6%;
+        font-size: 1.2vh;
+        left: 74%;
+        bottom: -6.21vh;
     }
 
     .mobile-keyboard {
         display: grid;
         grid-template-columns: repeat(10, 1fr);
-        gap: 0.5rem;
-        margin-top: 14vh;
+        column-gap: 1vw;
+        row-gap: 0.5vh;
+        margin-top: 8vh;
     }
 
     .mobile-key {
         font-family: inherit;
-        font-size: 2.2rem;
+        font-size: calc(1.4vh + 1.6vw);
         font-weight: 700;
-        height: 5.8rem;
-        width: 4rem;
+        height: 6vh;
+        width: 7vw;
         color: var(--white-color);
         border-radius: 0.6rem;
         text-transform: uppercase;
@@ -455,12 +473,12 @@
     }
 
     .mobile-key-backspace {
-        font-size: 2.6rem;
+        font-size: 5vw;
         vertical-align: middle;
     }
 
     .mobile-key-enter {
-        width: 12rem;
+        width: 22vw;
         grid-column: span 3;
         justify-self: end;
     }

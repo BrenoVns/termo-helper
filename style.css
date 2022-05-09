@@ -363,7 +363,6 @@ body {
 .main-section {
     margin-top: 24vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -646,6 +645,7 @@ body {
 ------------------------------------- */
 
 .footer {
+    display: block;
     color: var(--black-color);
     font-size: 1.2rem;
     font-weight: 500;
