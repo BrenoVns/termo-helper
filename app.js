@@ -124,7 +124,7 @@ function setResultWordsScreen(resultWords) {
     resetResultWords();
     setResultWordsElements(resultWords);
     portugueseResultTitle.innerText =
-        resultWords.length < 16 ? `${resultWords.length.toString()} possíveis palavras` : "16+ possíveis palavras";
+        resultWords.length < 16 ? `${resultWords.length.toString()} palavras possíveis` : "16+ palavras possíveis";
     englishResultTitle.innerText =
         resultWords.length < 16 ? `${resultWords.length.toString()} possible words` : "16+ possible words";
 

@@ -108,7 +108,7 @@ body {
     width: 7.6rem;
     font-size: 4.2rem;
     border: 0.64rem solid var(--dark-brown-color);
-    border-radius: clamp(1rem, 1.2vh, 2rem);
+    border-radius: clamp(0.9rem, 1.2vh, 1rem);
 }
 
 .screen-mode-full .letter-input:focus {
@@ -328,7 +328,7 @@ body {
 }
 
 .help-result {
-    width: clamp(5rem, 34vh, 32rem);
+    width: 34vh;
 }
 
 .help-result-words {
@@ -564,7 +564,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 62vh;
+    height: 58vh;
     overflow: hidden;
 }
 
@@ -645,7 +645,6 @@ body {
 ------------------------------------- */
 
 .footer {
-    display: block;
     color: var(--black-color);
     font-size: 1.2rem;
     font-weight: 500;
