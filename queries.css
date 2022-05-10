@@ -357,16 +357,17 @@
 
     .help-modal .help-text {
         font-size: 1.2rem;
+        font-size: 1.4vh;
     }
 
     .help-modal .help-strong-word {
-        font-size: 1.2rem;
-        height: 2.7rem;
-        width: 5.7rem;
+        font-size: 1.3vh;
+        height: 2.9vh;
+        width: 5.8vh;
     }
 
     .help-modal .heading-tertiary {
-        font-size: 1.3rem;
+        font-size: 1.4vh;
     }
 
     .help-modal .help-letter-list {
@@ -375,9 +376,15 @@
     }
 
     .help-modal .help-letter {
-        font-size: 1.8rem;
-        height: 3.1rem;
-        width: 3.1rem;
+        font-size: 1.8vh;
+        height: 3.2vh;
+        width: 3.2vh;
+        border-width: clamp(0.1rem, 0.3vh, 0.8rem);
+        border-radius: 0.6vh;
+    }
+
+    .help-modal .help-selected-letter {
+        border-bottom-width: clamp(0.2rem, 0.6vh, 1.6rem);
     }
 
     .help-modal .help-letters-sections {
@@ -428,7 +435,7 @@
     }
 
     body .main-section .arrow {
-        top: 14.5vh;
+        top: calc(9.8vh + 10vw);
         border-radius: 1.4vh;
     }
 
@@ -440,20 +447,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .main-section .enter-btn {
         font-size: 1.7vh;
         bottom: -6.2vh;
         height: 4.8vh;
         width: 10vh;
-        border: 0.48rem solid var(--dark-brown-color);
+        border-width: 0.46vh;
+        border-radius: 1vh;
     }
 
     .main-section .reset-btn {
-        font-size: 1.2vh;
+        font-size: 1.6vh;
         left: 74%;
         bottom: -6.21vh;
+        border-width: 0.46vh;
+        border-radius: 1vh;
+        padding: 1.15vh;
     }
 
     .mobile-keyboard {
